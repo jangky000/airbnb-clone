@@ -1,11 +1,11 @@
 var express = require('express');
 var app = express();
 // var user = require('./routes/user');
-// var pug = require('pug');
+app.locals.pretty = true; // html 코드를 보기 좋게 정렬
 
-app.use(express.static('public'));
 app.set('view engine' , 'pug');
 
+app.use(express.static('public'));
 // 미들웨어: req -> 미들웨어 -> 라우트 작업
 // var myLogger = function(req, res, next){
 //     console.log(req.url); // url: /user 등이 콘솔에 표시됨
@@ -17,6 +17,21 @@ app.set('view engine' , 'pug');
 app.get('/', function(req, res){
     // res.send('Hello World');
     res.render('home');
+});
+
+app.get('/login', function(req, res){
+    // res.send('Hello World');
+    res.render('login');
+});
+
+app.get('/logout', function(req, res){
+    // res.send('Hello World');
+    res.render('logout');
+});
+
+app.get('/', function(req, res){
+    // res.send('Hello World');
+    res.render('logout');
 });
 
 // app.use('/user', user);
