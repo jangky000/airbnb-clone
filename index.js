@@ -19,20 +19,31 @@ app.get('/', function(req, res){
     res.render('home');
 });
 
-app.get('/login', function(req, res){
+// 회원 등록 폼
+app.get('/register', function(req, res){
+    // res.send('Hello World');
+    res.render('register');
+});
+
+// 회원 등록 처리
+app.post('/users', function(req, res){
+    // res.send('Hello World');
+    res.render('users');
+});
+
+// 로그인
+app.post('/login', function(req, res){
     // res.send('Hello World');
     res.render('login');
 });
 
+// 로그아웃
 app.get('/logout', function(req, res){
     // res.send('Hello World');
     res.render('logout');
 });
 
-app.get('/', function(req, res){
-    // res.send('Hello World');
-    res.render('logout');
-});
+
 
 // app.use('/user', user);
 
