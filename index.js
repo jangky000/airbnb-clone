@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
 // var user = require('./routes/user');
+// var pug = require('pug');
 
+app.use(express.static('public'));
 app.set('view engine' , 'pug');
 
 // 미들웨어: req -> 미들웨어 -> 라우트 작업
