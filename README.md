@@ -38,7 +38,9 @@ url: https://week1airbnb.herokuapp.com/
 ### 진행상황
 |월|화|수|목|금|
 |---|---|---|---|---|
-|express세팅 ||||
-|pug 세팅 |||||
-|heroku 배포 |||||
+|express세팅 완료|Embedded DB 설정 완료|||
+|pug 세팅 완료|라우팅 설정 완료||||
+|heroku 배포 완료|회원가입/조회 기능 완료||||
+||간단한 pug 레이아웃 추가 ||||
+||라우팅 모듈화 완료||||
 
