@@ -15,16 +15,22 @@ router.use(bodyParser.urlencoded({extended:true})); // 클라이언트 서버 �
 
 // 회원 등록 폼
 router.get('/register', function(req, res){
-    res.send('register World');
-    // res.render('register');
+    // res.send('register World');
+    res.render('register');
 });
 
 // 회원 등록 처리
-router.post('/addUser', function(req, res){
-    // res.send('Hello World');
+router.post('/register', function(req, res){
     console.log(JSON.stringify(req.body, null, 2));
-
-    res.render('users');
+    // 이메일 중복체크
+    // 값 존재하는지 체크
+    let json = req.body;
+    json['pwd'] = bcrypt.generateHash(json.pwd);
+    delete json['pwdCheck'];
+    userDAO.create(json);
+    // console.log(req.body);
+    // res.send(req.body);
+    res.render('login');
 });
 
 // 로그인 폼
@@ -38,7 +44,7 @@ router.post('/login', function(req, res){
     console.log(JSON.stringify(req.body, null, 2));
     // const id = req.body.id;
     // const pwd = bcrypt.generateHash(req.body.pwd);
-    const promise = userDAO.readById(req.body.id);
+    const promise = userDAO.readByEmail(req.body.email);
     promise.then(json_arr=>{
         console.log(json_arr[0]['pwd']); //object
         if(json_arr.length === 1){
@@ -47,6 +53,7 @@ router.post('/login', function(req, res){
                 // console.log('패스워드 일치');
                 res.send(`<h1>패스워드 일치</h1>`);
                 // res.render('home'); // 로그인 성공
+                // 세션 등록
             } else{
                 // console.log('패스워드 불일치');
                 res.send(`<h1>패스워드 불일치</h1>`);
@@ -64,11 +71,8 @@ router.post('/login', function(req, res){
         }
 
     });
-    
     // const result = bcrypt.validateHash('asd', pwd);
-
     // res.send(`<h1>login world!</h1>`);
-    // 
 });
 
 // 로그아웃
