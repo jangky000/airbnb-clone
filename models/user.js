@@ -3,16 +3,16 @@
 // nedb 로드
 const Datastore = require('nedb');
 // 자동 로드 및 데이터베이스 파일 생성
-// const db = new Datastore({filename: 'user.db', autoload: true});
+const db = new Datastore({filename: 'user.db', autoload: true});
 
 class UserDAO{
     constructor(){
-        this.db = new Datastore({filename: 'user.db', autoload: true});
+        // this.db = new Datastore({filename: 'user.db', autoload: true});
     }
     // 삽입
     create(json){
         return new Promise((resolve)=>{
-            this.db.insert([json], function(err, newDoc){
+            db.insert([json], function(err, newDoc){
                 // console.log('레코드 삽입 결과: ' + newDoc);
                 resolve(newDoc);
             })
@@ -22,7 +22,7 @@ class UserDAO{
     // id 일치 개수 조회
     count(email){
         return new Promise((resolve)=>{
-            this.db.count({email:email}, function(err, count){
+            db.count({email:email}, function(err, count){
                 // console.log('테이블 레코드 전체 개수: ' + count);
                 resolve(count);
             })
@@ -32,7 +32,7 @@ class UserDAO{
     // 조건 검색
     readByEmail(email){
         return new Promise((resolve)=>{
-            this.db.find({email: email}, function(err, docs){
+            db.find({email: email}, function(err, docs){
                 // 레코드 검색 결과
                 // console.log(docs);
                 resolve(docs);
@@ -43,7 +43,7 @@ class UserDAO{
     // 수정
     update(email,pwd){
         return new Promise((resolve)=>{
-            this.db.update({email:email}, {$set:{pwd: pwd}}, function(err, numDocs){
+            db.update({email:email}, {$set:{pwd: pwd}}, function(err, numDocs){
                 // console.log('레코드 수정 반영 수: ' + numDocs)
                 resolve(numDocs);
             })

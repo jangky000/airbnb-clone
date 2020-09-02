@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const morgan = require('morgan'); // 로깅 미들웨어
-const bodyParser = require('body-parser'); // json 형식으로 파싱하기 위해 사용
+
 const Bcrypt = require('../models/encrpyt'); // 암호화
-const UserDAO = require('../models/user.js');
+const UserDAO = require('../models/user');
+const sessionManager = require('../models/session');
+
 
 const bcrypt = new Bcrypt();
 const userDAO = new UserDAO();
 
-router.use(morgan('dev'));
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended:true})); // 클라이언트 서버 간에 url에서 아스키코드 외의 문자형이 인코딩 됨
 
 
 // 회원 등록 폼
@@ -41,27 +39,28 @@ router.get('/login', function(req, res){
 
 // 로그인 처리
 router.post('/login', function(req, res){
-    console.log(JSON.stringify(req.body, null, 2));
+    // console.log(JSON.stringify(req.body, null, 2));
     // const id = req.body.id;
     // const pwd = bcrypt.generateHash(req.body.pwd);
     const promise = userDAO.readByEmail(req.body.email);
     promise.then(json_arr=>{
-        console.log(json_arr[0]['pwd']); //object
+        // console.log(json_arr);
         if(json_arr.length === 1){
             const pwd_check = bcrypt.validateHash(req.body.pwd, json_arr[0]['pwd']);
             if(pwd_check){
-                // console.log('패스워드 일치');
-                res.send(`<h1>패스워드 일치</h1>`);
-                // res.render('home'); // 로그인 성공
+                // res.send(`<h1>패스워드 일치</h1>`);
+                // console.log(sessionManager.generateSID());
+                const sid = sessionManager.generateSID();
                 // 세션 등록
+                sessionManager.saveSession(sid, json_arr[0].email, json_arr[0].name, 10*1000); // 10초
+                // 쿠키 등록
+                res.cookie('sid', sid, {maxAge:1000*10}); // 10초
+                res.redirect('/'); // 로그인 성공
             } else{
-                // console.log('패스워드 불일치');
                 res.send(`<h1>패스워드 불일치</h1>`);
                 // res.render('login');
             }
         } else if(json_arr.length === 0){
-            // 존재하지 않는 id
-            // console.log('존재하지 않는 id 입니다.');
             res.send(`<h1>존재하지 않는 id 입니다.</h1>`);
             // <script>alert("");locatin.href="/";</script>
             // res.redirect();
