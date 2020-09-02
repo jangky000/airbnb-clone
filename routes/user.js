@@ -63,6 +63,8 @@ router.post('/login', function(req, res){
             // 존재하지 않는 id
             // console.log('존재하지 않는 id 입니다.');
             res.send(`<h1>존재하지 않는 id 입니다.</h1>`);
+            // <script>alert("");locatin.href="/";</script>
+            // res.redirect();
             // res.render('login');
         } else{
             // console.log('id가 유일하지 않습니다. 저장소 문제');
