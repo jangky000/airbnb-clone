@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended:true})); // 클라이언트 서버 간�
 app.use(cookieParser());
 
 // 미들웨어: http요청 -> 미들웨어 -> 라우트 작업
-var myLogger = function(req, res, next){
+var globalSession = function(req, res, next){
     // console.log(req.url); // url: /user 등이 콘솔에 표시됨
     res.locals.sessObj = {name: undefined, email: undefined};
     if(req.cookies['sid']){
@@ -44,22 +44,11 @@ var myLogger = function(req, res, next){
     }
     next();
 }
-app.use(myLogger); // 미들웨어 사용, 이것이 실행된 후에 라우팅 된다
+app.use(globalSession); // 미들웨어 사용, 이것이 실행된 후에 라우팅 된다
 
 app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 라우팅 처리함
 
 app.get('/', function(req, res){
-    // console.log('쿠키!');
-    // console.log(req.cookies);
-    // if(req.cookies['sid']){
-    //     // 세션 검사
-    //     session = sessionManager.readBySID(req.cookies['sid']);
-    //     sessionManager.updateSession(req.cookies['sid'], configs.cookieExpireSec*1000);
-    //     res.render('home', {name: session.name, email: session.email});
-    // } else{
-    //     // 로그인x
-    //     res.render('home');
-    // }
     res.render('home');
     // res.send('Hello World');
 });
