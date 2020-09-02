@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 
 const userRoute = require('./routes/user') // 라우팅 모듈
 const sessionManager = require('./models/session');
-
+const configs = require('./env/config');
 // 테스트 데이터
 // let doc1 = {
 //     id: 'user1',
@@ -48,6 +48,7 @@ app.get('/', function(req, res){
     if(req.cookies['sid']){
         // 세션 검사
         session = sessionManager.readBySID(req.cookies['sid']);
+        sessionManager.updateSession(req.cookies['sid'], configs.cookieExpireSec*1000);
         res.render('home', {name: session.name, email: session.email});
     } else{
         // 로그인x

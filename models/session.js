@@ -1,6 +1,8 @@
 // 세션을 DB로 저장하는 이유, 
 // 서버가 꺼지는 상황에서도 세션을 저장 유지하기 위해서 -> REDIS에서 세션을 관리하는 것에서 착안
 
+const config = require("../env/config");
+
 /*
 Session 내부 객체
        - session: Tomcat(WAS: Web Application Server) 서버에서 접속한
@@ -100,8 +102,14 @@ class SessionManager{
         // console.log(this.session[sid]);
     }
 
-    updateSession(sid){
-        this.session[sid] = {...this.session[sid], lastAccessDate: new Date().format('yyyy-MM-dd HH:mm:ss')};
+    updateSession(sid, maxAge){
+        const current = new Date();
+        const expire = new Date()
+        expire.setMilliseconds(current.getMilliseconds() + maxAge);
+
+        this.session[sid] = {...this.session[sid], expireDate:expire.format('yyyy-MM-dd HH:mm:ss'), lastAccessDate: current.format('yyyy-MM-dd HH:mm:ss')};
+        console.log("update!");
+        console.log(this.session[sid]);
     }
 
     deleteSession(sid){
@@ -115,6 +123,23 @@ class SessionManager{
         // map 형태로 변환
     }
 
+    garbageCollecting(){
+        setInterval(()=>{
+            const current = new Date().format('yyyy-MM-dd HH:mm:ss');
+            for(let sid of Object.keys(this.session)){
+                console.log(this.session[sid].expireDate);
+                console.log(current);
+                if(this.session[sid].expireDate < current){
+                    this.deleteSession(sid)
+                }
+            }
+        }, 3000);
+
+    }
+
 }
 
-module.exports = new SessionManager();
+const sessionManager = new SessionManager();
+sessionManager.garbageCollecting();
+
+module.exports = sessionManager;
