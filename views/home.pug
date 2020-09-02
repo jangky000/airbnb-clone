@@ -20,12 +20,14 @@ html(lang='ko')
                                 a(href="./user/host")="호스트되기"
                             li
                                 a(href="./user/language")= "언어와 통화"
-                            li
-                                //- - const name = #(name)
-                                //- - const name = ${name}
-                                if name
-                                    a(href="./user/login")= name + " 님 환영합니다."
-                                else
+                            
+                            if name
+                                li
+                                    a(href="./user/mypage")= name + " 님 환영합니다."
+                                li
+                                    a(href="./user/logout")= "로그아웃"
+                            else
+                                li
                                     a(href="./user/login")= "로그인"
                     
                     div.headcenter

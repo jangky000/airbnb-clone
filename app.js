@@ -43,6 +43,7 @@ app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 �
 // app.use(myLogger); // 미들웨어 사용, 이것이 실행된 후에 라우팅 된다?
 
 app.get('/', function(req, res){
+    console.log('쿠키!');
     console.log(req.cookies);
     if(req.cookies['sid']){
         // 세션 검사

@@ -5,11 +5,8 @@ const Bcrypt = require('../models/encrpyt'); // 암호화
 const UserDAO = require('../models/user');
 const sessionManager = require('../models/session');
 
-
 const bcrypt = new Bcrypt();
 const userDAO = new UserDAO();
-
-
 
 // 회원 등록 폼
 router.get('/register', function(req, res){
@@ -28,7 +25,8 @@ router.post('/register', function(req, res){
     userDAO.create(json);
     // console.log(req.body);
     // res.send(req.body);
-    res.render('login');
+    // 회원가입이 완료되었습니다. 표시하기
+    res.redirect('./login');
 });
 
 // 로그인 폼
@@ -50,11 +48,12 @@ router.post('/login', function(req, res){
             if(pwd_check){
                 // res.send(`<h1>패스워드 일치</h1>`);
                 // console.log(sessionManager.generateSID());
+                const MaxAge = 120;
                 const sid = sessionManager.generateSID();
                 // 세션 등록
-                sessionManager.saveSession(sid, json_arr[0].email, json_arr[0].name, 10*1000); // 10초
+                sessionManager.saveSession(sid, json_arr[0].email, json_arr[0].name, MaxAge*1000); // MaxAge초
                 // 쿠키 등록
-                res.cookie('sid', sid, {maxAge:1000*10}); // 10초
+                res.cookie('sid', sid, {maxAge:MaxAge*1000}); // MaxAge초
                 res.redirect('/'); // 로그인 성공
             } else{
                 res.send(`<h1>패스워드 불일치</h1>`);
@@ -78,8 +77,12 @@ router.post('/login', function(req, res){
 
 // 로그아웃
 router.get('/logout', function(req, res){
-    res.send('logout World');
-    // res.render('logout');
+    // 쿠키 삭제
+    res.clearCookie('sid');
+    // 세션 삭제
+    sessionManager.deleteSession(req.cookies['sid']);
+    // res.send('logout World');
+    res.redirect('/'); // 로그아웃
 });
 
 module.exports = router;

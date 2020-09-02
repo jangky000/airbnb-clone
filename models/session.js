@@ -104,8 +104,11 @@ class SessionManager{
         this.session[sid] = {...this.session[sid], lastAccessDate: new Date().format('yyyy-MM-dd HH:mm:ss')};
     }
 
-    deleteSession(){
+    deleteSession(sid){
         // 로그아웃, 브라우저 닫을 때, 타임아웃 시 삭제
+        delete this.session[sid];
+        console.log('delete session');
+        console.log(this.session[sid]);
     }
 
     loadSession(){
