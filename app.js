@@ -24,36 +24,43 @@ const configs = require('./env/config');
 // var user = require('./routes/user');
 app.locals.pretty = true; // html 코드를 보기 좋게 정렬
 app.set('view engine' , 'pug');
+app.use(express.static('public')); // 정적 파일 디렉토리 설정
+// == app.use('/', express.static('public')); 
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true})); // 클라이언트 서버 간에 url에서 아스키코드 외의 문자형이 인코딩 됨
 app.use(cookieParser());
 
-app.use(express.static('public')); // 정적 파일 디렉토리 설정
-// == app.use('/', express.static('public')); 
-app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 라우팅 처리함
-
 // 미들웨어: http요청 -> 미들웨어 -> 라우트 작업
-// var myLogger = function(req, res, next){
-//     console.log(req.url); // url: /user 등이 콘솔에 표시됨
-//     next();
-// }
-
-// app.use(myLogger); // 미들웨어 사용, 이것이 실행된 후에 라우팅 된다?
-
-app.get('/', function(req, res){
-    console.log('쿠키!');
-    console.log(req.cookies);
+var myLogger = function(req, res, next){
+    // console.log(req.url); // url: /user 등이 콘솔에 표시됨
+    res.locals.sessObj = {name: undefined, email: undefined};
     if(req.cookies['sid']){
         // 세션 검사
         session = sessionManager.readBySID(req.cookies['sid']);
         sessionManager.updateSession(req.cookies['sid'], configs.cookieExpireSec*1000);
-        res.render('home', {name: session.name, email: session.email});
-    } else{
-        // 로그인x
-        res.render('home');
+        res.locals.sessObj = {name: session.name, email: session.email};
     }
+    next();
+}
+app.use(myLogger); // 미들웨어 사용, 이것이 실행된 후에 라우팅 된다
+
+app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 라우팅 처리함
+
+app.get('/', function(req, res){
+    // console.log('쿠키!');
+    // console.log(req.cookies);
+    // if(req.cookies['sid']){
+    //     // 세션 검사
+    //     session = sessionManager.readBySID(req.cookies['sid']);
+    //     sessionManager.updateSession(req.cookies['sid'], configs.cookieExpireSec*1000);
+    //     res.render('home', {name: session.name, email: session.email});
+    // } else{
+    //     // 로그인x
+    //     res.render('home');
+    // }
+    res.render('home');
     // res.send('Hello World');
 });
 

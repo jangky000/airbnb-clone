@@ -127,8 +127,8 @@ class SessionManager{
         setInterval(()=>{
             const current = new Date().format('yyyy-MM-dd HH:mm:ss');
             for(let sid of Object.keys(this.session)){
-                console.log(this.session[sid].expireDate);
-                console.log(current);
+                // console.log(this.session[sid].expireDate);
+                // console.log(current);
                 if(this.session[sid].expireDate < current){
                     this.deleteSession(sid)
                 }
