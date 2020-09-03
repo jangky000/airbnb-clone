@@ -5,12 +5,10 @@ const bcrypt = require('bcryptjs')
 
 class Bcrypt{
     constructor(){
-        //
     }
 
     // generates hash
     generateHash(password) {
-        // var bcrypt = require('bcryptjs');
         // var salt = bcrypt.genSaltSync(10);
         // var hash = bcrypt.hashSync("B4c0/\/", salt);
         return bcrypt.hashSync(password, 8); // Auto-gen a salt and hash 8은 옵션?

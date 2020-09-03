@@ -7,7 +7,6 @@ const db = new Datastore({filename: 'user.db', autoload: true});
 
 class UserDAO{
     constructor(){
-        // this.db = new Datastore({filename: 'user.db', autoload: true});
     }
     // 삽입
     create(json){

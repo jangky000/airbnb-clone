@@ -74,8 +74,6 @@ class SessionManager{
         delete copy['createDate'];
         delete copy['expireDate'];
         delete copy['lastAccessDate'];
-        // console.log(this.session[sid]);
-        // console.log(copy);
         return copy;
     }
 
@@ -99,7 +97,6 @@ class SessionManager{
         const expire = new Date()
         expire.setMilliseconds(current.getMilliseconds() + maxAge);
         this.session[sid] = {email:email, name: name, createDate: current.format('yyyy-MM-dd HH:mm:ss'), expireDate:expire.format('yyyy-MM-dd HH:mm:ss'), lastAccessDate:current.format('yyyy-MM-dd HH:mm:ss')};
-        // console.log(this.session[sid]);
     }
 
     updateSession(sid, maxAge){
@@ -114,8 +111,6 @@ class SessionManager{
 
     updateMyInfo(sid, name, birth){
         this.session[sid] = {...this.session[sid], name:name, birth: birth};
-        // console.log("update!");
-        // console.log(this.session[sid]);
     }
 
     deleteSession(sid){

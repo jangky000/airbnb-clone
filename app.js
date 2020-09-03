@@ -15,7 +15,6 @@ const searchRoute = require('./routes/search');
 
 const app = express();
 
-// var user = require('./routes/user');
 app.locals.pretty = true; // html 코드를 보기 좋게 정렬
 app.set('view engine' , 'pug');
 app.use(express.static('public')); // 정적 파일 디렉토리 설정
@@ -39,7 +38,6 @@ var globalSession = function(req, res, next){
         // 세션이 삭제 된 경우 쿠키에서 sid도 삭제
         // console.log(JSON.stringify(session) === JSON.stringify({}));
         if(JSON.stringify(session) === JSON.stringify({})){
-            // console.log("쿠키 삭제")
             res.clearCookie("sid"); // 쿠키 삭제
         }else{
             sessionManager.updateSession(sid, configs.cookieExpireSec*1000);
@@ -54,7 +52,6 @@ app.use(globalSession); // 미들웨어 사용, 이것이 실행된 후에 라�
 
 app.get('/', function(req, res){
     res.render('home');
-    // res.send('Hello World');
 });
 
 app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 라우팅 처리함
@@ -93,23 +90,6 @@ app.use((err, req, res, next) => { // 에러 처리 부분
     console.error(err.stack); // 에러 메시지 표시
     res.status(500).send('500 서버 에러!'); // 500 상태 표시 후 에러 메시지 전송
 });
-
-// app.use(function(req, res, next) {
-//     // error 생성 후 next
-//     next(createError(404));
-// });
-
-// // error handler
-// app.use(function(err, req, res, next) {
-//     // error 템플릿에 전달할 데이터 설정
-//     res.locals.message = err.message;
-//     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-//     // render the error page
-//     res.status(err.status || 500);
-//     res.render('error');
-// })
-
 
 app.listen(process.env.PORT||3000, function(){
     console.log('Example App is listening on port 3000');
