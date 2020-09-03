@@ -55,7 +55,9 @@ url: https://week1airbnb.herokuapp.com/
             - 세션 DB에서 불러오기
         - 쿠키 CRUD
     - 검색 기능
-        - 
+        - search 라우팅 추가
+        - rooms 모델 추가
+        - rooms.pug 추가
 
 
 ## 개발 계획표
@@ -75,4 +77,5 @@ url: https://week1airbnb.herokuapp.com/
 |heroku 배포 완료|회원가입/조회 기능 완료|pug 모듈화|header 회원 메뉴 모달 추가||
 ||간단한 pug 레이아웃 추가 |js 생성 및 탭 이벤트 추가|url 접근 제한||
 ||라우팅 모듈화 완료||회원정보 수정/탈퇴||
+||||숙소 검색 기능 추가||
 
