@@ -1,28 +1,21 @@
-doctype
-html(lang='ko')
-    head
-        meta(charset='utf-8')
-        link(rel="stylesheet", href="../css/style.css")
-        title= "숙소, 체험, 장소를 모두 한 곳에서 - 에어비앤비"
-    body
-        header#header
-            include ./sub/header.pug
-        main#main= "메인"
-            div.container
-                div
-                    h2= "회원가입"
-                    form(action="./register", method="post")
-                        //- input#id(type="text", name="id", placeholder="아이디")
-                        ul
-                            li
-                                input#email(type="email", name="email", placeholder="이메일")
-                            li
-                                input#pwd(type="password", name="pwd", placeholder="패스워드")
-                            li
-                                input#pwdCheck(type="password", name="pwdCheck", placeholder="패스워드 확인")
-                            li
-                                input#name(type="text", name="name", placeholder="이름")
-                            li
-                                input#birth(type="text", name="birth", placeholder="생년월일:2000.01.01")
-                            li
-                                button(type="submit")= "회원가입"
+extends layout/layout.pug
+
+block main
+    div.container
+        div
+            h2= "회원가입"
+            form(action="/user/register", method="post")
+                //- input#id(type="text", name="id", placeholder="아이디")
+                ul
+                    li
+                        input#email(type="email", name="email", placeholder="이메일")
+                    li
+                        input#pwd(type="password", name="pwd", placeholder="패스워드")
+                    li
+                        input#pwdCheck(type="password", name="pwdCheck", placeholder="패스워드 확인")
+                    li
+                        input#name(type="text", name="name", placeholder="이름")
+                    li
+                        input#birth(type="text", name="birth", placeholder="생년월일:2000.01.01")
+                    li
+                        button(type="submit")= "회원가입"

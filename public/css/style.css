@@ -1,5 +1,19 @@
 @import "sub/header.css";
-@import "sub/nav.css";
+@import "sub/search.css";
+@import "sub/footer.css";
+
+body{
+    color: #484848;
+}
+
+a{
+    text-decoration: none;
+    color: #484848;
+}
+
+a:hover{
+    text-decoration: underline;
+}
 
 ul {
     list-style: none;
@@ -13,9 +27,11 @@ ul {
 
 #wrap {
     margin: 40px auto;
-    width: 80%;
+    width: 100%;
 }
 
 .container{
     position: relative;
+    margin: 0 auto;
+    width: 80%;
 }

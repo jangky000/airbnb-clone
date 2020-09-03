@@ -32,3 +32,14 @@
     margin: 0 5px;
     float: left;
 }
+
+#header .headright li a{
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 22px;
+}
+
+#header .headright li a:hover{
+    text-decoration: none;
+    background-color: #F7F7F7;
+}
