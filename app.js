@@ -37,56 +37,28 @@ var globalSession = function(req, res, next){
     // console.log(req.url); // url: /user 등이 콘솔에 표시됨
     res.locals.sessObj = {name: undefined, email: undefined};
     if(req.cookies['sid']){
+        const sid = req.cookies['sid']
         // 세션 검사
-        session = sessionManager.readBySID(req.cookies['sid']);
-        sessionManager.updateSession(req.cookies['sid'], configs.cookieExpireSec*1000);
+        session = sessionManager.readBySID(sid);
+        sessionManager.updateSession(sid, configs.cookieExpireSec*1000);
+        // 쿠키 유효시간 업데이트
+        res.cookie('sid', sid, {maxAge:configs.cookieExpireSec*1000}); // MaxAge초
         res.locals.sessObj = {name: session.name, email: session.email};
     }
     next();
 }
 app.use(globalSession); // 미들웨어 사용, 이것이 실행된 후에 라우팅 된다
 
-app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 라우팅 처리함
-
 app.get('/', function(req, res){
     res.render('home');
     // res.send('Hello World');
 });
 
+app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 라우팅 처리함
+
 // app.get('/state', function(req,res) {
 //     res.send('cookie : ' + req.cookies.key);
 // });
-
-
-// // 회원 등록 폼
-// app.get('/register', function(req, res){
-//     // res.send('Hello World');
-//     res.render('register');
-// });
-
-// // 회원 등록 처리
-// app.post('/users', function(req, res){
-//     // res.send('Hello World');
-//     console.log(JSON.stringify(req.body, null, 2));
-
-//     res.render('users');
-// });
-
-// // 로그인
-// app.post('/login', function(req, res){
-//     // res.send('Hello World');
-//     res.render('login');
-// });
-
-// // 로그아웃
-// app.get('/logout', function(req, res){
-//     // res.send('Hello World');
-//     res.render('logout');
-// });
-
-
-
-// app.use('/user', user);
 
 // app.get('/user/:id', function(req, res) {
 //     res.send('Received a GET request, param:' + req.params.id);
@@ -103,6 +75,10 @@ app.get('/', function(req, res){
 // app.delete('/user', function(req, res) {
 //     res.send('Received a DELETE request');
 // });
+
+// 에러 핸들러
+// 404 에러처리
+// 500 에러처리
 
 app.listen(process.env.PORT||3000, function(){
     console.log('Example App is listening on port 3000');
