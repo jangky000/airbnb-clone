@@ -77,8 +77,35 @@ app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 �
 // });
 
 // 에러 핸들러
-// 404 에러처리
-// 500 에러처리
+// 참고: https://psyhm.tistory.com/46
+// 참고: https://m.blog.naver.com/PostView.nhn?blogId=pjok1122&logNo=221545761219&proxyReferer=https:%2F%2Fwww.google.com%2F
+// 등록되지 않은 path로 요청이 왔으면 404 페이지를 만들어야함.
+// http-errors 모듈로 error 객체 생성 후 에러 처리 핸들러로 넘김
+app.use((req, res, next) => { // 404 처리 부분
+    res.status(404).send('404 not found 에러');
+});
+
+app.use((err, req, res, next) => { // 에러 처리 부분
+    console.error(err.stack); // 에러 메시지 표시
+    res.status(500).send('500 서버 에러!'); // 500 상태 표시 후 에러 메시지 전송
+});
+
+// app.use(function(req, res, next) {
+//     // error 생성 후 next
+//     next(createError(404));
+// });
+
+// // error handler
+// app.use(function(err, req, res, next) {
+//     // error 템플릿에 전달할 데이터 설정
+//     res.locals.message = err.message;
+//     res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+//     // render the error page
+//     res.status(err.status || 500);
+//     res.render('error');
+// })
+
 
 app.listen(process.env.PORT||3000, function(){
     console.log('Example App is listening on port 3000');
