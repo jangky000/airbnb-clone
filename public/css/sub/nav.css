@@ -1,0 +1,27 @@
+/* nav - search */
+#search_rooms{
+    text-align: center;
+}
+
+#search_rooms ul{
+    display: inline;
+}
+
+#search_rooms ul li{
+    margin: 0 5px;
+    display: inline-block;
+}
+
+#search_experiences{
+    text-align: center;
+    display: none;
+}
+
+#search_experiences ul{
+    display: inline;
+}
+
+#search_experiences ul li{
+    margin: 0 5px;
+    display: inline-block;
+}
