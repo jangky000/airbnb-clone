@@ -1,0 +1,22 @@
+extends layout/layout.pug
+
+block main
+    div.container
+        div(style="width: 200px; margin: 0 auto;")
+            h2= "내 정보"
+            ul
+                li
+                    span
+                        b= "이메일"
+                    span= email
+                li
+                    span
+                        b= "이름"
+                    span= name
+                li
+                    span
+                        b= "생년월일"
+                    span= birth
+                li
+                    button(type="button" onclick="location.href='./update/mypage';")= "내 정보 수정"
+                    button(type="button" onclick="location.href='./update/password';")= "패스워드 변경"

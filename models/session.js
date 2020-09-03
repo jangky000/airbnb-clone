@@ -108,14 +108,14 @@ class SessionManager{
         expire.setMilliseconds(current.getMilliseconds() + maxAge);
 
         this.session[sid] = {...this.session[sid], expireDate:expire.format('yyyy-MM-dd HH:mm:ss'), lastAccessDate: current.format('yyyy-MM-dd HH:mm:ss')};
-        console.log("update!");
-        console.log(this.session[sid]);
+        // console.log("update!");
+        // console.log(this.session[sid]);
     }
 
     deleteSession(sid){
         // 로그아웃, 브라우저 닫을 때, 타임아웃 시 삭제
         delete this.session[sid];
-        console.log('delete session');
+        console.log('delete session!');
         console.log(this.session[sid]);
     }
 
