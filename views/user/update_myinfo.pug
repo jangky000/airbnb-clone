@@ -13,11 +13,11 @@ block main
                     li
                         span
                             b= "이름"
-                        input(type="text", name="name", value=name)
+                        input(type="text", name="name", value=name required)
                     li
                         span
                             b= "생년월일"
-                        input(type="text", name="birth", value=birth)
+                        input(type="text", name="birth", value=birth required)
                     li
                         button(type="submit")= "수정"
                         button(type="button" onclick="location.href='/user/mypage';")= "취소"
