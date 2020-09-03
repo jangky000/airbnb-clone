@@ -20,7 +20,7 @@ class UserDAO{
     }
 
     // id 일치 개수 조회
-    count(email){
+    countEmail(email){
         return new Promise((resolve)=>{
             db.count({email:email}, function(err, count){
                 // console.log('테이블 레코드 전체 개수: ' + count);

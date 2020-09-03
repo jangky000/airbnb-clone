@@ -5,7 +5,6 @@ const Bcrypt = require('../models/encrpyt'); // 암호화
 const UserDAO = require('../models/user');
 const sessionManager = require('../models/session');
 const configs = require('../env/config');
-const { session } = require('../models/session');
 
 const bcrypt = new Bcrypt();
 const userDAO = new UserDAO();
@@ -32,7 +31,10 @@ router.get('/register', function(req, res){
 });
 
 // 회원 등록 처리
-router.post('/register', function(req, res){
+router.post('/register', async function(req, res){
+    const emailCnt = await userDAO.countEmail(req.body.email);
+    // return res.send("일치 개수" + cnt);
+    if(emailCnt !== 0) return res.send("<script>alert('이미 존재하는 이메일입니다.'); history.back();</script>");
     if(req.body.pwd !== req.body.pwdCheck) return res.send("<script>alert('패스워드 확인이 필요합니다.'); history.back();</script>");
     // console.log(JSON.stringify(req.body, null, 2));
     // 이메일 중복체크

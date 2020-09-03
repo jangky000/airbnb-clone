@@ -1,2 +1,4 @@
-{"email":"user1@gmail.com","pwd":"$2a$08$0Kbx.IVxXg1ubPG9/.ElzOhoNDv.y2KCOjk5Hyo2FmLNqcvaAIq/6","name":"사용자","birth":"2000.01.01","_id":"bKstMgQAI6xLLMy3"}
-{"$$deleted":true,"_id":"bKstMgQAI6xLLMy3"}
+{"email":"user1@gmail.com","pwd":"$2a$08$cWYZpBvxiAQJIKBX/o0ESelP4zMnrpPv017Bl6ZyIBU3cGYwvFQRm","name":"사용자","birth":"2000.01.01","_id":"acW43zZpNEnPr0nQ"}
+{"email":"user2@gmail.com","pwd":"$2a$08$OKeYBK7IWSEEFrnxLTYlE.EHPB34C7Pm1ZYhcUDfhaAbBFpC80Ju6","name":"사용자","birth":"2000.01.01","_id":"FVii1SzJbJr2WKdd"}
+{"email":"user2@gmail.com","pwd":"$2a$08$OKeYBK7IWSEEFrnxLTYlE.EHPB34C7Pm1ZYhcUDfhaAbBFpC80Ju6","name":"사용자2","birth":"2000.01.01","_id":"FVii1SzJbJr2WKdd"}
+{"$$deleted":true,"_id":"FVii1SzJbJr2WKdd"}

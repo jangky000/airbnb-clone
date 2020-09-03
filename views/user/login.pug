@@ -8,9 +8,9 @@ block main
                 //- input#id(type="text", name="id", placeholder="아이디")
                 ul
                     li
-                        input#email(type="email", name="email", placeholder="이메일")
+                        input#email(type="email", name="email", placeholder="이메일" required)
                     li 
-                        input#pwd(type="password", name="pwd", placeholder="패스워드")
+                        input#pwd(type="password", name="pwd", placeholder="패스워드" required)
                     li
                         button(type="submit")= "로그인"
                         button(type="button", onclick="location.href='/user/register'")= "회원가입"
