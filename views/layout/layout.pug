@@ -1,0 +1,27 @@
+doctype
+html(lang='ko')
+    head
+        meta(charset='utf-8')
+        link(rel="icon", href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico")
+        link(rel="stylesheet", href="/css/style.css")
+        title= "숙소, 체험, 장소를 모두 한 곳에서 - 에어비앤비"
+    body
+        div#wrap
+            header#header
+                include ../sub/header.pug
+            //- header ends
+
+            nav#search
+                include ../sub/search.pug
+            //- nav ends
+
+            main#main
+                block main
+                //- section= "섹션"
+                //- article= "아티클"
+            //- main ends
+
+            footer#footer
+                include ../sub/footer.pug
+            //- footer ends
+        script(src="/js/script.js")

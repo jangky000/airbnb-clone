@@ -1,21 +1,4 @@
-doctype
-html(lang='ko')
-    head
-        meta(charset='utf-8')
-        link(rel="stylesheet", href="css/style.css")
-        title= "숙소, 체험, 장소를 모두 한 곳에서 - 에어비앤비"
-    body
-        div#wrap
-            header#header
-                include ./sub/header.pug
-            //- header ends
+extends layout/layout.pug
 
-            nav#nav
-                include ./sub/nav.pug
-            //- nav ends
-
-            main#main= "메인"
-                section= "섹션"
-                article= "아티클"
-            footer#footer= "푸터"
-        script(src="js/script.js")
+block main
+    div.container 안녕하세요

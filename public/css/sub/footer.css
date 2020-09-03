@@ -1,0 +1,18 @@
+#footer{
+    background-color: #F7F7F7;
+}
+
+#footer .nav{
+    margin: 50px 0;
+}
+
+#footer .nav section{
+    float: left;
+    width: 25%;
+}
+
+#footer .foot {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border-top: 1px solid #DDDDDD;
+}
