@@ -33,6 +33,7 @@ router.get('/register', function(req, res){
 
 // 회원 등록 처리
 router.post('/register', function(req, res){
+    if(req.body.pwd !== req.body.pwdCheck) return res.send("<script>alert('패스워드 확인이 필요합니다.'); history.back();</script>");
     // console.log(JSON.stringify(req.body, null, 2));
     // 이메일 중복체크
     // 값 존재하는지 체크
@@ -129,7 +130,7 @@ router.post('/update/auth', function(req, res){
             if(pwd_check){
                 res.render("user/update_myinfo", {email: json_arr[0].email, name:json_arr[0].name, birth: json_arr[0].birth});
             }else{
-                res.send("<script>alert('패스워드가 틀렸습니다.'); history.back();</script>");
+                res.send("<script>alert('패스워드가 일치하지 않습니다.'); history.back();</script>");
             }
         }
     });
@@ -153,12 +154,31 @@ router.post('/update/myinfo', function(req, res){
 
 // 패스워드 수정 폼
 router.get('/update/password', function(req, res){
-    //
+    res.render("user/update_password");
 });
 
 // 패스워드 수정 처리
 router.post('/update/password', function(req, res){
-    res.render("user/update_password");
+    console.log(req.body.new_pwd);
+    console.log(req.body.new_pwdCheck);
+    if(req.body.new_pwd !== req.body.new_pwdCheck) return res.send("<script>alert('새 패스워드 확인이 필요합니다.'); history.back();</script>");
+    const session = sessionManager.readBySID(req.cookies['sid']);
+    const promise = userDAO.readByEmail(session.email);
+    promise.then(json_arr=>{
+        // console.log(json_arr);
+        if(json_arr.length === 1){
+            const pwd_check = bcrypt.validateHash(req.body.past_pwd, json_arr[0]['pwd']);
+            // console.log(pwd_check);
+            if(pwd_check){
+                console.log('패스워드 일치')
+                userDAO.update_password(session.email, bcrypt.generateHash(req.body.new_pwd));
+                res.redirect("/user/mypage");
+            }else{
+                res.send("<script>alert('기존 패스워드가 일치하지 않습니다.'); history.back();</script>");
+            }
+        }
+    });
+
 });
 
 // 회원 탈퇴 폼
