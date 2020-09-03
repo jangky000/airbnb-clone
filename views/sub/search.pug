@@ -13,9 +13,9 @@ div.container
                     input(type="date", name="checkout")
                 li
                     div= "인원"
-                    input(type="number", name="guests", placeholder=1)
+                    input(type="number", name="guests", value=1)
                 li
-                    button(type="button")= "검색"
+                    button(type="submit")= "검색"
     
     div#search_experiences
         form(action="/search/experiences", method="get")
@@ -27,4 +27,4 @@ div.container
                     div= "날짜"
                     input(type="date", name="day")
                 li
-                    button(type="button")= "검색"
+                    button(type="submit")= "검색"

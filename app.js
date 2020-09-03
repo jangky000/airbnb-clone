@@ -1,29 +1,19 @@
 const express = require('express');
-const app = express();
 // const path = require('path'); // path.join(__dirname, '../public/index.html') 등으로 상대경로를 쓰기 위해 사용하는 모듈
-
 const morgan = require('morgan'); // 로깅 미들웨어
 const bodyParser = require('body-parser'); // json 형식으로 파싱하기 위해 사용
 const cookieParser = require('cookie-parser');
 
-const userRoute = require('./routes/user') // 라우팅 모듈
-const sessionManager = require('./models/session');
 const configs = require('./env/config');
-const UserDAO = require('./models/user');
-const { session } = require('./models/session');
 
-const userDAO = new UserDAO();
-// 테스트 데이터
-// let doc1 = {
-//     id: 'user1',
-//     pwd: '1234'
-// };
+// 데이터 모델
+const sessionManager = require('./models/session');
 
-// let doc2 = {
-//     id: 'user2',
-//     pwd: '1234'
-// };
+// 라우팅 모듈
+const userRoute = require('./routes/user') 
+const searchRoute = require('./routes/search');
 
+const app = express();
 
 // var user = require('./routes/user');
 app.locals.pretty = true; // html 코드를 보기 좋게 정렬
@@ -57,7 +47,6 @@ var globalSession = function(req, res, next){
             res.cookie('sid', sid, {maxAge:configs.cookieExpireSec*1000}); // MaxAge초
             res.locals.sessObj = {name: session.name, email: session.email};
         }
-        
     }
     next();
 }
@@ -69,6 +58,7 @@ app.get('/', function(req, res){
 });
 
 app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 라우팅 처리함
+app.use('/search', searchRoute);
 
 // app.get('/state', function(req,res) {
 //     res.send('cookie : ' + req.cookies.key);
