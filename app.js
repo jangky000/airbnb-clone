@@ -44,7 +44,7 @@ var globalSession = function(req, res, next){
         const sid = req.cookies['sid'];
         // 세션 검사
         const session = sessionManager.readBySID(sid); 
-        console.log("세션 있나?");
+        console.log("현재 세션 정보");
         console.log(session);
         // 세션이 삭제 된 경우 쿠키에서 sid도 삭제
         // console.log(JSON.stringify(session) === JSON.stringify({}));

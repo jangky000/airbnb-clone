@@ -159,8 +159,8 @@ router.get('/update/password', function(req, res){
 
 // 패스워드 수정 처리
 router.post('/update/password', function(req, res){
-    console.log(req.body.new_pwd);
-    console.log(req.body.new_pwdCheck);
+    // console.log(req.body.new_pwd);
+    // console.log(req.body.new_pwdCheck);
     if(req.body.new_pwd !== req.body.new_pwdCheck) return res.send("<script>alert('새 패스워드 확인이 필요합니다.'); history.back();</script>");
     const session = sessionManager.readBySID(req.cookies['sid']);
     const promise = userDAO.readByEmail(session.email);
@@ -170,9 +170,10 @@ router.post('/update/password', function(req, res){
             const pwd_check = bcrypt.validateHash(req.body.past_pwd, json_arr[0]['pwd']);
             // console.log(pwd_check);
             if(pwd_check){
-                console.log('패스워드 일치')
+                // console.log('패스워드 일치')
                 userDAO.update_password(session.email, bcrypt.generateHash(req.body.new_pwd));
-                res.redirect("/user/mypage");
+                // res.redirect("/user/mypage");
+                res.send("<script>alert('패스워드가 수정되었습니다.'); location.href='/user/mypage'</script>");
             }else{
                 res.send("<script>alert('기존 패스워드가 일치하지 않습니다.'); history.back();</script>");
             }
@@ -183,12 +184,30 @@ router.post('/update/password', function(req, res){
 
 // 회원 탈퇴 폼
 router.get('/withdrawal', function(req, res){
-    //
+    res.render("user/withdrawal");
 });
 
 // 회원 탈퇴 처리
 router.post('/withdrawal', function(req, res){
-    //
+    const session = sessionManager.readBySID(req.cookies['sid']);
+    const promise = userDAO.readByEmail(session.email);
+    promise.then(json_arr=>{
+        // console.log(json_arr);
+        if(json_arr.length === 1){
+            const pwd_check = bcrypt.validateHash(req.body.pwd, json_arr[0]['pwd']);
+            // console.log(pwd_check);
+            if(pwd_check){
+                // console.log('패스워드 일치')
+                userDAO.delete(session.email);
+                // 쿠키 삭제, 세션 삭제
+                res.clearCookie('sid');
+                sessionManager.deleteSession(req.cookies['sid']);
+                res.send("<script>alert('회원 탈퇴하였습니다.'); location.href='/'</script>");
+            }else{
+                res.send("<script>alert('기존 패스워드가 일치하지 않습니다.'); history.back();</script>");
+            }
+        }
+    });
 });
 
 module.exports = router;
