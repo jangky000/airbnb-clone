@@ -1,0 +1,34 @@
+/* header */
+#header .headleft {
+    /* float: left; */
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#header .headcenter {
+    text-align: center;
+}
+
+#header .headcenter ul{
+    display: inline;
+}
+
+#header .headcenter ul li{
+    margin: 0 5px;
+    line-height: 2;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#header .headright {
+    /* float: right; */
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#header .headright li{
+    margin: 0 5px;
+    float: left;
+}
