@@ -62,6 +62,6 @@ url: https://week1airbnb.herokuapp.com/
 |express세팅 완료|Embedded DB 설정 완료|로그인 세션 객체 및 CRUD|pug 모듈 개선 및 css 모듈화||
 |pug 세팅 완료|라우팅 설정 완료|쿠키 CRD|쿠키 U 추가||
 |heroku 배포 완료|회원가입/조회 기능 완료|pug 모듈화|header 회원 메뉴 모달 추가||
-||간단한 pug 레이아웃 추가 |js 생성 및 탭 이벤트 추가|||
+||간단한 pug 레이아웃 추가 |js 생성 및 탭 이벤트 추가|url 접근 제한||
 ||라우팅 모듈화 완료||||
 

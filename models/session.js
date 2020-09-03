@@ -112,6 +112,12 @@ class SessionManager{
         // console.log(this.session[sid]);
     }
 
+    updateMyInfo(sid, name, birth){
+        this.session[sid] = {...this.session[sid], name:name, birth: birth};
+        // console.log("update!");
+        // console.log(this.session[sid]);
+    }
+
     deleteSession(sid){
         // 로그아웃, 브라우저 닫을 때, 타임아웃 시 삭제
         delete this.session[sid];

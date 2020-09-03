@@ -5,13 +5,15 @@ const Bcrypt = require('../models/encrpyt'); // 암호화
 const UserDAO = require('../models/user');
 const sessionManager = require('../models/session');
 const configs = require('../env/config');
+const { session } = require('../models/session');
 
 const bcrypt = new Bcrypt();
 const userDAO = new UserDAO();
 
 // url 접근 관리
 router.use('/', function(req, res, next){
-    console.log(req.url);
+    // console.log(req.url);
+    // console.log(req.cookies['sid']);
     const withAuth = ['/mypage', '/logout']; // 인증 후 접근 가능
     const withoutAuth = ['/register', '/login']; // 인증 후 접근 불가능
 
@@ -26,7 +28,7 @@ router.use('/', function(req, res, next){
 // 회원 등록 폼
 router.get('/register', function(req, res){
     // res.send('register World');
-    res.render('register');
+    res.render('user/register');
 });
 
 // 회원 등록 처리
@@ -48,7 +50,7 @@ router.post('/register', function(req, res){
 // 로그인 폼
 router.get('/login', function(req, res){
     // res.send('Hello World');
-    res.render('login');
+    res.render('user/login');
 });
 
 // 로그인 처리
@@ -105,9 +107,68 @@ router.get('/logout', function(req, res){
 // 내 정보
 router.get('/mypage', function(req, res){
     userDAO.readByEmail(res.locals.sessObj.email).then(userObj=>{
-        res.render("mypage", {email: userObj[0].email, name:userObj[0].name, birth: userObj[0].birth});
+        res.render("user/mypage", {email: userObj[0].email, name:userObj[0].name, birth: userObj[0].birth});
     });
     
+});
+
+// 인증
+router.get('/update/auth', function(req, res){
+    res.render("user/update_auth");
+});
+
+// 수정 폼
+router.post('/update/auth', function(req, res){
+    const session = sessionManager.readBySID(req.cookies['sid']);
+    const promise = userDAO.readByEmail(session.email);
+    promise.then(json_arr=>{
+        // console.log(json_arr);
+        if(json_arr.length === 1){
+            const pwd_check = bcrypt.validateHash(req.body.pwd, json_arr[0]['pwd']);
+            // console.log(pwd_check);
+            if(pwd_check){
+                res.render("user/update_myinfo", {email: json_arr[0].email, name:json_arr[0].name, birth: json_arr[0].birth});
+            }else{
+                res.send("<script>alert('패스워드가 틀렸습니다.'); history.back();</script>");
+            }
+        }
+    });
+});
+
+// 내 정보 수정 폼
+// router.get('/update/myinfo', function(req, res){
+//     userDAO.readByEmail(res.locals.sessObj.email).then(userObj=>{
+//         res.render("user/update_myinfo", {email: userObj[0].email, name:userObj[0].name, birth: userObj[0].birth});
+//     });
+// });
+
+// 내 정보 수정 처리
+router.post('/update/myinfo', function(req, res){
+    const sid = req.cookies['sid'];
+    sessionManager.updateMyInfo(sid, req.body.name, req.body.birth)
+    const session = sessionManager.readBySID(sid);
+    userDAO.update_myinfo(session.email, session.name, session.birth);
+    res.redirect("/user/mypage");
+});
+
+// 패스워드 수정 폼
+router.get('/update/password', function(req, res){
+    //
+});
+
+// 패스워드 수정 처리
+router.post('/update/password', function(req, res){
+    res.render("user/update_password");
+});
+
+// 회원 탈퇴 폼
+router.get('/withdrawal', function(req, res){
+    //
+});
+
+// 회원 탈퇴 처리
+router.post('/withdrawal', function(req, res){
+    //
 });
 
 module.exports = router;
