@@ -10,11 +10,11 @@
     text-align: center;
 }
 
-#header .headcenter ul{
+#header .headcenter>ul{
     display: inline;
 }
 
-#header .headcenter ul li{
+#header .headcenter>ul>li{
     margin: 0 5px;
     line-height: 2;
     display: inline-block;
@@ -28,18 +28,65 @@
     right: 0px;
 }
 
-#header .headright li{
+#header .headright>ul>li{
     margin: 0 5px;
     float: left;
 }
 
-#header .headright li a{
+#header .headright>ul>li>a{
     font-weight: bold;
     padding: 5px;
     border-radius: 22px;
 }
 
-#header .headright li a:hover{
+#header .headright>ul>li>a:hover{
     text-decoration: none;
     background-color: #F7F7F7;
+}
+
+#header .headright>ul>li.login{
+    position: relative;
+    overflow: visible;
+}
+
+#header .headright>ul>li.login>#user_nav_modal{
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #DDDDDD;
+    width: 200px;
+    padding:20px;
+    border-radius: 20px;
+    z-index: 2;
+    box-shadow: 3px -3px 5px #F7F7F7;
+}
+
+/* #header .headright>ul>li.login .user_nav_modal>li{
+    display: block;
+} */
+
+
+#header .headright>ul>li>button{
+    padding: 5px;
+    border: 1px solid #DDDDDD;
+    border-radius: 20px;
+    transform: translate(0, -25%);
+    background-color: #ffffff;
+}
+
+#header .headright>ul>li>button:hover{
+    /* background-color: #F7F7F7; */
+    box-shadow: 0px 5px 5px #DDDDDD;
+}
+
+#header .headright>ul>li>button .bar{
+    transform: translate(0, -25%);
+    width: 25px;
+    display: inline-block;
+}
+
+#header .headright>ul>li>button .icon{
+    width: 25px;
+    display: inline-block;
 }
