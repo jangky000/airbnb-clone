@@ -2,3 +2,10 @@ extends layout/layout.pug
 
 block main
     div.container(style="height: 400px;")
+        div(style="border-radius: 20px; height: 300px; text-align:center; overflow:hidden;")
+            <picture>
+                <source srcset="https://a0.muscache.com/im/pictures/4b5b2c9e-9d97-4fb7-8826-1529dacb13df.jpg?im_w=1200 1x, https://a0.muscache.com/im/pictures/4b5b2c9e-9d97-4fb7-8826-1529dacb13df.jpg?im_w=1920 2x" media="(min-width: 1128px)">
+                <source srcset="https://a0.muscache.com/im/pictures/f21b90e2-804d-4d54-93a7-b19eea9234f4.jpg?im_w=720 1x, https://a0.muscache.com/im/pictures/f21b90e2-804d-4d54-93a7-b19eea9234f4.jpg?im_w=1440 2x" media="(min-width: 744px)">
+                <source srcset="https://a0.muscache.com/im/pictures/1ca586a4-1614-4804-ab61-87e5f0dba572.jpg?im_w=240 1x, https://a0.muscache.com/im/pictures/1ca586a4-1614-4804-ab61-87e5f0dba572.jpg?im_w=240 2x">
+                <img aria-hidden="true" alt="" src="https://a0.muscache.com/im/pictures/1ca586a4-1614-4804-ab61-87e5f0dba572.jpg?aki_policy=large" style="object-fit: cover; vertical-align: bottom;">
+            </picture>

@@ -4,16 +4,16 @@ div.container
             ul
                 li
                     div= "위치"
-                    input(type="text", name="location" placeholder="위치")
+                    input(type="text", name="location" placeholder="위치" required)
                 li
                     div= "체크인"
-                    input(type="date", name="checkin")
+                    input(type="date", name="checkin" required)
                 li
                     div= "체크아웃"
-                    input(type="date", name="checkout")
+                    input(type="date", name="checkout" required)
                 li
                     div= "인원"
-                    input(type="number", name="guests", value=1)
+                    input(type="number", name="guests", value=1 required)
                 li
                     button(type="submit")= "검색"
     
@@ -22,9 +22,9 @@ div.container
             ul
                 li
                     div= "위치"
-                    input(type="text", name="location" placeholder="위치")
+                    input(type="text", name="location" placeholder="위치" required)
                 li
                     div= "날짜"
-                    input(type="date", name="day")
+                    input(type="date", name="day" required)
                 li
                     button(type="submit")= "검색"
