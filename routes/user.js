@@ -33,17 +33,11 @@ router.post('/register', async function(req, res){
     // return res.send("일치 개수" + cnt);
     if(emailCnt !== 0) return res.send("<script>alert('이미 존재하는 이메일입니다.'); history.back();</script>");
     if(req.body.pwd !== req.body.pwdCheck) return res.send("<script>alert('패스워드 확인이 필요합니다.'); history.back();</script>");
-    // console.log(JSON.stringify(req.body, null, 2));
-    // 이메일 중복체크
-    // 값 존재하는지 체크
     let json = req.body;
     json['pwd'] = bcrypt.generateHash(json.pwd);
     delete json['pwdCheck'];
     userDAO.create(json);
-    // console.log(req.body);
-    // 회원가입이 완료되었습니다. 표시하기
     res.send("<script>alert('회원가입이 완료되었습니다'); location.href='./login'</script>");
-    // res.redirect('./login');
 });
 
 // 로그인 폼
@@ -53,7 +47,6 @@ router.get('/login', function(req, res){
 
 // 로그인 처리
 router.post('/login', function(req, res){
-    // console.log(JSON.stringify(req.body, null, 2));
     const promise = userDAO.readByEmail(req.body.email);
     promise.then(json_arr=>{
         if(json_arr.length === 1){
@@ -66,7 +59,6 @@ router.post('/login', function(req, res){
                 res.cookie('sid', sid, {maxAge:configs.cookieExpireSec*1000}); // MaxAge초
                 res.send("<script>alert('로그인 성공'); location.href='/'</script>");
             } else{
-                // res.send(`<h1>패스워드 불일치</h1>`);
                 res.send("<script>alert('패스워드 불일치'); history.back();</script>");
             }
         } else if(json_arr.length === 0){

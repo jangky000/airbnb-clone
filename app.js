@@ -1,5 +1,4 @@
 const express = require('express');
-// const path = require('path'); // path.join(__dirname, '../public/index.html') 등으로 상대경로를 쓰기 위해 사용하는 모듈
 const morgan = require('morgan'); // 로깅 미들웨어
 const bodyParser = require('body-parser'); // json 형식으로 파싱하기 위해 사용
 const cookieParser = require('cookie-parser');
@@ -18,7 +17,6 @@ const app = express();
 app.locals.pretty = true; // html 코드를 보기 좋게 정렬
 app.set('view engine' , 'pug');
 app.use(express.static('public')); // 정적 파일 디렉토리 설정
-// == app.use('/', express.static('public')); 
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -27,7 +25,6 @@ app.use(cookieParser());
 
 // 미들웨어: http요청 -> 미들웨어 -> 라우트 작업
 var globalSession = function(req, res, next){
-    // console.log(req.url); // url: /user 등이 콘솔에 표시됨
     res.locals.sessObj = {name: undefined, email: undefined};
     if(req.cookies['sid']){
         const sid = req.cookies['sid'];
@@ -36,7 +33,6 @@ var globalSession = function(req, res, next){
         console.log("현재 세션 정보");
         console.log(session);
         // 세션이 삭제 된 경우 쿠키에서 sid도 삭제
-        // console.log(JSON.stringify(session) === JSON.stringify({}));
         if(JSON.stringify(session) === JSON.stringify({})){
             res.clearCookie("sid"); // 쿠키 삭제
         }else{
@@ -57,29 +53,7 @@ app.get('/', function(req, res){
 app.use('/user', userRoute); // /user로 요청이 들어오면 user.js에서 라우팅 처리함
 app.use('/search', searchRoute);
 
-// app.get('/state', function(req,res) {
-//     res.send('cookie : ' + req.cookies.key);
-// });
-
-// app.get('/user/:id', function(req, res) {
-//     res.send('Received a GET request, param:' + req.params.id);
-// });
-
-// app.post('/user', function(req, res) {
-//     res.json({ success: true })
-// });
-
-// app.put('/user', function(req, res) {
-//     res.status(400).json({ message: 'Hey, you. Bad Request!' });
-// });
-
-// app.delete('/user', function(req, res) {
-//     res.send('Received a DELETE request');
-// });
-
 // 에러 핸들러
-// 참고: https://psyhm.tistory.com/46
-// 참고: https://m.blog.naver.com/PostView.nhn?blogId=pjok1122&logNo=221545761219&proxyReferer=https:%2F%2Fwww.google.com%2F
 // 등록되지 않은 path로 요청이 왔으면 404 페이지를 만들어야함.
 // http-errors 모듈로 error 객체 생성 후 에러 처리 핸들러로 넘김
 app.use((req, res, next) => { // 404 처리 부분

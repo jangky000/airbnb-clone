@@ -17,7 +17,6 @@ function show_experiences(){
 }
 
 // user_nav_modal 
-// -> ?? 효율적인지 모르겠다.
 function toggle_user_nav_modal(){
     if(document.getElementById('user_nav_modal').style.display === 'none'){
         document.getElementById('user_nav_modal').style.display = 'block';

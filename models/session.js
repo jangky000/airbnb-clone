@@ -1,30 +1,4 @@
-// 세션을 DB로 저장하는 이유, 
-// 서버가 꺼지는 상황에서도 세션을 저장 유지하기 위해서 -> REDIS에서 세션을 관리하는 것에서 착안
-
 const config = require("../env/config");
-
-/*
-Session 내부 객체
-       - session: Tomcat(WAS: Web Application Server) 서버에서 접속한
-         사용자마다 고유하게 할당되는 메모리, Tomcat 서버에서 관리하며
-         다른 사용자의 메모리는 보안상 접근을 할 수 없음, 기본적으로 서버 차원에서
-         보안 설정을 함으로 해킹이 매우 어려움.
-2) 서버의 메모리상에 저장되는 정보로 보안성이 높으며, 접속한 사용자 별로 
-      세션 메모리가 할당되며, 모든 페이지에서 session 객체를 사용할 수 있습니다. 
-      사용자가 서버에 접속하면 할당되고 브러우저를 닫거나 로그아웃하면 
-      session 정보가 저장된 메모리가 자동으로 해제. 
-5) 서버상에서 세션의 유지시간(수명)은 초단위로  
-      <% session.setMaxInactiveInterval(600); %>로 지정합니다. 
-      만약 사용자가 JSP페이지를 열어놓고 링크(<A>)를 클릭하지 않으면, 메모리 관리
-      차원에서 session 메모리는 삭제됩니다.  
-      예) 톰캣 서버: 30분, 국민은행은 5분, 신한은행 10분후 자동 로그아웃,  
-           세션 연장은 링크를 클릭하는 역할을 수행함. 
-*/
-
-// nedb 로드
-// const Datastore = require('nedb');
-// 자동 로드 및 데이터베이스 파일 생성
-// const db = new Datastore({filename: 'session.db', autoload: true});
 
 // 참고: https://electronic-moongchi.tistory.com/83
 Date.prototype.format = function (f) {
@@ -65,8 +39,6 @@ Number.prototype.zf = function (len) { return this.toString().zf(len); };
 class SessionManager{
     constructor(){
         this.session = new Map();
-        // session에는 sid, email, name의 정보 저장 들어감
-        // session[sid] = {email: "user@gmail.com", name: "사용자", createDate:"", expireDate:"", lastAccessDate:""}
     }
 
     readBySID(sid){
@@ -79,7 +51,6 @@ class SessionManager{
 
     generateSID(){
         // 랜덤 SID 생성
-        // 중복 검사 추가하기
         const digit = 20;
         let text = "";
         const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -105,8 +76,6 @@ class SessionManager{
         expire.setMilliseconds(current.getMilliseconds() + maxAge);
 
         this.session[sid] = {...this.session[sid], expireDate:expire.format('yyyy-MM-dd HH:mm:ss'), lastAccessDate: current.format('yyyy-MM-dd HH:mm:ss')};
-        // console.log("update!");
-        // console.log(this.session[sid]);
     }
 
     updateMyInfo(sid, name, birth){
@@ -128,16 +97,12 @@ class SessionManager{
         setInterval(()=>{
             const current = new Date().format('yyyy-MM-dd HH:mm:ss');
             for(let sid of Object.keys(this.session)){
-                // console.log(this.session[sid].expireDate);
-                // console.log(current);
                 if(this.session[sid].expireDate < current){
                     this.deleteSession(sid)
                 }
             }
         }, 3000);
-
     }
-
 }
 
 const sessionManager = new SessionManager();
