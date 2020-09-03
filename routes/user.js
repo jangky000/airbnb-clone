@@ -151,12 +151,8 @@ router.post('/update/myinfo', function(req, res){
     sessionManager.updateMyInfo(sid, req.body.name, req.body.birth)
     const session = sessionManager.readBySID(sid);
     userDAO.update_myinfo(session.email, session.name, session.birth);
-<<<<<<< HEAD
     // res.redirect("/user/mypage");
     res.send("<script>alert('내 정보가 수정되었습니다.'); location.href='/user/mypage'</script>");
-=======
-    res.redirect("/user/mypage");
->>>>>>> 16eb21b583094289d156ef1e3c8ec70c222bd605
 });
 
 // 패스워드 수정 폼
