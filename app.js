@@ -9,6 +9,10 @@ const cookieParser = require('cookie-parser');
 const userRoute = require('./routes/user') // 라우팅 모듈
 const sessionManager = require('./models/session');
 const configs = require('./env/config');
+const UserDAO = require('./models/user');
+const { session } = require('./models/session');
+
+const userDAO = new UserDAO();
 // 테스트 데이터
 // let doc1 = {
 //     id: 'user1',
@@ -37,13 +41,23 @@ var globalSession = function(req, res, next){
     // console.log(req.url); // url: /user 등이 콘솔에 표시됨
     res.locals.sessObj = {name: undefined, email: undefined};
     if(req.cookies['sid']){
-        const sid = req.cookies['sid']
+        const sid = req.cookies['sid'];
         // 세션 검사
-        session = sessionManager.readBySID(sid);
-        sessionManager.updateSession(sid, configs.cookieExpireSec*1000);
-        // 쿠키 유효시간 업데이트
-        res.cookie('sid', sid, {maxAge:configs.cookieExpireSec*1000}); // MaxAge초
-        res.locals.sessObj = {name: session.name, email: session.email};
+        const session = sessionManager.readBySID(sid); 
+        console.log("세션 있나?");
+        console.log(session);
+        // 세션이 삭제 된 경우 쿠키에서 sid도 삭제
+        // console.log(JSON.stringify(session) === JSON.stringify({}));
+        if(JSON.stringify(session) === JSON.stringify({})){
+            // console.log("쿠키 삭제")
+            res.clearCookie("sid"); // 쿠키 삭제
+        }else{
+            sessionManager.updateSession(sid, configs.cookieExpireSec*1000);
+            // 쿠키 유효시간 업데이트
+            res.cookie('sid', sid, {maxAge:configs.cookieExpireSec*1000}); // MaxAge초
+            res.locals.sessObj = {name: session.name, email: session.email};
+        }
+        
     }
     next();
 }

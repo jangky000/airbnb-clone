@@ -1,0 +1,17 @@
+extends ../layout/layout.pug
+
+block main
+    div.container
+        div(style="width: 40%; margin: 0 auto;")
+            h2= "비밀번호 인증"
+            form(action="/user/update/auth", method="post")
+                ul
+                    li
+                        h4= "회원 정보 수정을 위해 패스워드 인증이 필요합니다."
+                        input#pwd(type="password", name="pwd", placeholder="패스워드")
+
+                    li
+                        button(type="submit")= "인증"
+                        button(type="button" onclick="location.href='/user/mypage';")= "취소"
+                    li
+                    li

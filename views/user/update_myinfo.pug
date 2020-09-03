@@ -1,0 +1,25 @@
+extends ../layout/layout.pug
+
+block main
+    div.container
+        div(style="width: 40%; margin: 0 auto;")
+            h2= "내 정보 수정"
+            form(action="/user/update/myinfo", method="post")
+                ul
+                    li
+                        span
+                            b= "이메일"
+                        span= email
+                    li
+                        span
+                            b= "이름"
+                        input(type="text", name="name", value=name)
+                    li
+                        span
+                            b= "생년월일"
+                        input(type="text", name="birth", value=birth)
+                    li
+                        button(type="submit")= "수정"
+                        button(type="button" onclick="location.href='/user/mypage';")= "취소"
+                    li
+                    li

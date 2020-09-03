@@ -1,8 +1,8 @@
-extends layout/layout.pug
+extends ../layout/layout.pug
 
 block main
     div.container
-        div(style="width: 200px; margin: 0 auto;")
+        div(style="width: 40%; margin: 0 auto;")
             h2= "회원가입"
             form(action="/user/register", method="post")
                 //- input#id(type="text", name="id", placeholder="아이디")
@@ -19,3 +19,5 @@ block main
                         input#birth(type="text", name="birth", placeholder="생년월일:2000.01.01")
                     li
                         button(type="submit")= "회원가입"
+                    li
+                    li

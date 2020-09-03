@@ -1,0 +1,17 @@
+extends ../layout/layout.pug
+
+block main
+    div.container
+        div(style="width: 40%; margin: 0 auto;")
+            h2= "회원 탈퇴"
+            form(action="/user/update/auth", method="post")
+                ul
+                    li
+                        h4= "회원 탈퇴를 하시면 관련한 회원 정보가 모두 삭제되어 복구 불가능합니다."
+                        input#pwd(type="password", name="pwd", placeholder="패스워드")
+
+                    li
+                        button(type="submit")= "탈퇴"
+                        button(type="button" onclick="location.href='/user/mypage';")= "취소"
+                    li
+                    li

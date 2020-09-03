@@ -40,8 +40,18 @@ class UserDAO{
         });
     }
 
-    // 수정
-    update(email,pwd){
+    // 회원정보 수정
+    update_myinfo(email,name, birth){
+        return new Promise((resolve)=>{
+            db.update({email:email}, {$set:{name: name, birth:birth}}, function(err, numDocs){
+                // console.log('레코드 수정 반영 수: ' + numDocs)
+                resolve(numDocs);
+            })
+        });
+    }
+
+    // 패스워드 수정
+    update_password(email,pwd){
         return new Promise((resolve)=>{
             db.update({email:email}, {$set:{pwd: pwd}}, function(err, numDocs){
                 // console.log('레코드 수정 반영 수: ' + numDocs)
