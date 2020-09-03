@@ -28,6 +28,11 @@ url: https://week1airbnb.herokuapp.com/
     - 회원가입/조회/수정/탈퇴 기능
         - 회원 관리
             - nedb CRUD
+            - 회원 등록
+            - 회원 조회
+            - 회원 정보 수정
+            - 회원 패스워드 수정
+            - 회원 삭제
         - 비밀번호 암호화
             - bcrypt
 
@@ -63,5 +68,5 @@ url: https://week1airbnb.herokuapp.com/
 |pug 세팅 완료|라우팅 설정 완료|쿠키 CRD|쿠키 U 추가||
 |heroku 배포 완료|회원가입/조회 기능 완료|pug 모듈화|header 회원 메뉴 모달 추가||
 ||간단한 pug 레이아웃 추가 |js 생성 및 탭 이벤트 추가|url 접근 제한||
-||라우팅 모듈화 완료||||
+||라우팅 모듈화 완료||회원정보 수정/삭제||
 
