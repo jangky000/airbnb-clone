@@ -19,7 +19,7 @@ class UserDAO{
         });
     }
 
-    // id 일치 개수 조회
+    // email 일치 개수 조회
     countEmail(email){
         return new Promise((resolve)=>{
             db.count({email:email}, function(err, count){
