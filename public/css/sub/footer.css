@@ -16,3 +16,7 @@
     padding-bottom: 24px;
     border-top: 1px solid #DDDDDD;
 }
+
+#footer .foot span{
+    margin: 5px;
+}
