@@ -1,0 +1,77 @@
+#register .modal_container{
+    margin: 0 auto;
+    width: 100%;
+    position: relative;;
+}
+
+
+#register .modal_container .close{
+    all:unset;
+    font-size: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 0;
+}
+#register .modal_container .close:hover {
+    cursor: pointer;
+}
+
+#register .modal_container h2{
+    font-size: 16px;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+#register .modal_container button {
+    all:unset;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-sizing: border-box; /* 오페라(Opera) */
+    -moz-box-sizing: border-box; /* 파이어폭스(Firefox)*/
+    -webkit-box-sizing: border-box; /* 웹킷(Webkit) & 크롬(Chrome)*/
+}
+
+#register .modal_container button div:nth-child(1){
+    margin-right: 10px;
+}
+
+#register .modal_container button:hover{
+    cursor: pointer;
+}
+
+#register .modal_container .facebook{
+    background-color: rgb(69, 104, 178);
+    color: white;
+}
+
+#register .modal_container .google{
+    border: 2px solid rgb(118, 118, 118);
+}
+
+#register .modal_container input{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgb(170, 170, 170);
+    margin: 5px 0;
+    padding: 10px 10px;
+    box-sizing: border-box; /* 오페라(Opera) */
+    -moz-box-sizing: border-box; /* 파이어폭스(Firefox)*/
+    -webkit-box-sizing: border-box; /* 웹킷(Webkit) & 크롬(Chrome)*/
+}
+/* 출처: https://endorphin0710.tistory.com/75 [Festina Lente] */
+
+#register .modal_container .register{
+    width: 100%;
+    color: white;
+    background-color: #df3c47;
+    box-sizing: border-box; /* 오페라(Opera) */
+    -moz-box-sizing: border-box; /* 파이어폭스(Firefox)*/
+    -webkit-box-sizing: border-box; /* 웹킷(Webkit) & 크롬(Chrome)*/
+}

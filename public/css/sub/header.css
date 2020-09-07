@@ -2,17 +2,14 @@
 #flex_header {
     display: flex;
     flex-direction: row;
-    /* align-items //세로 축의 정렬 방법 */
-    /* justify-content // 가로 축의 정렬 방법 */
-    /* flex-direction //item을 정방향,역방향으로 정렬하는 방법 */
-
+    /* justify-content: space-between; */
 }
 #header .headleft {
     /* float: left;
     position: absolute;
     top: 0px;
     left: 0px; */
-    flex-grow: 2;
+    flex-grow: 3;
 }
 
 #header .headcenter {
@@ -35,7 +32,7 @@
     /* position: absolute;
     top: 0px;
     right: 0px; */
-    flex-grow: 4;
+    flex-grow: 1;
     
 }
 #header .headright>ul {
@@ -64,32 +61,6 @@
     overflow: visible;
 }
 
-/* 모달 */
-.modal{
-    position: fixed;
-    /* position: absolute; */
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-items: center;
-    align-items: center;
-}
-
-.modal_overlay{
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 50;
-}
-
-.modal_content{
-    border-radius: 20px;
-    width: 30%;
-}
-
 #user_nav_menu{
     position: absolute;
     top: 40px;
@@ -104,13 +75,7 @@
 }
 
 
-.hidden {
-    display: none;
-}
 
-.show {
-    display: block;
-}
 
 
 
