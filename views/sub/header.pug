@@ -36,7 +36,7 @@ div.container#flex_header
                     div#user_nav_menu.hidden
                         ul
                             li
-                                a(href="/user/register")= "회원가입"
+                                a#open_register= "회원가입"
                             li
                                 a(href="/user/login")= "로그인"
                             li
@@ -46,7 +46,7 @@ div.container#flex_header
                             li
                                 a(href="/")= "도움말"
 
-div.modal#register
+div.modal#modal_register.hidden
     div.modal_overlay
     div.modal_content
         include ./modal/register.pug
