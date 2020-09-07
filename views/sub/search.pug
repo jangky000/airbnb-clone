@@ -1,5 +1,5 @@
 div.container
-    div#search_rooms
+    div#search_rooms.show
         form(action="/search/rooms", method="get")
             ul
                 li
@@ -17,7 +17,7 @@ div.container
                 li
                     button(type="submit")= "검색"
     
-    div#search_experiences
+    div#search_experiences.hidden
         form(action="/search/experiences", method="get")
             ul
                 li

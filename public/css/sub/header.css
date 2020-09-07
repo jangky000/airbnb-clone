@@ -1,13 +1,23 @@
 /* header */
+#flex_header {
+    display: flex;
+    flex-direction: row;
+    /* align-items //세로 축의 정렬 방법 */
+    /* justify-content // 가로 축의 정렬 방법 */
+    /* flex-direction //item을 정방향,역방향으로 정렬하는 방법 */
+
+}
 #header .headleft {
-    /* float: left; */
+    /* float: left;
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: 0px; */
+    flex-grow: 2;
 }
 
 #header .headcenter {
     text-align: center;
+    flex-grow: 6;
 }
 
 #header .headcenter>ul{
@@ -22,15 +32,20 @@
 }
 
 #header .headright {
-    /* float: right; */
-    position: absolute;
+    /* position: absolute;
     top: 0px;
-    right: 0px;
+    right: 0px; */
+    flex-grow: 4;
+    
+}
+#header .headright>ul {
+    display: flex;
+    justify-content: flex-end;
 }
 
 #header .headright>ul>li{
     margin: 0 5px;
-    float: left;
+    /* float: left; */
 }
 
 #header .headright>ul>li>a{
@@ -49,7 +64,33 @@
     overflow: visible;
 }
 
-#header .headright>ul>li.login>#user_nav_modal{
+/* 모달 */
+.modal{
+    position: fixed;
+    /* position: absolute; */
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+.modal_overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 50;
+}
+
+.modal_content{
+    border-radius: 20px;
+    width: 30%;
+}
+
+#user_nav_menu{
     position: absolute;
     top: 40px;
     right: 0;
@@ -58,13 +99,19 @@
     width: 200px;
     padding:20px;
     border-radius: 20px;
-    z-index: 2;
+    z-index: 100;
     box-shadow: 3px -3px 5px #F7F7F7;
 }
 
-/* #header .headright>ul>li.login .user_nav_modal>li{
+
+.hidden {
+    display: none;
+}
+
+.show {
     display: block;
-} */
+}
+
 
 
 #header .headright>ul>li>button{

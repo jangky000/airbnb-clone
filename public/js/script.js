@@ -1,26 +1,31 @@
 // window.onload = function(){}
 
 // addEventLister
-document.getElementById('tab_rooms').addEventListener('click', show_rooms);
-document.getElementById('tab_experiences').addEventListener('click', show_experiences);
-document.getElementById('btn_user_nav').addEventListener('click', toggle_user_nav_modal);
+document.getElementById('tab_rooms').addEventListener('click', toggle_search_tab);
+document.getElementById('tab_experiences').addEventListener('click', toggle_search_tab);
+document.getElementById('btn_user_nav').addEventListener('click', toggle_user_nav_menu);
+document.querySelector("body").addEventListener('click', close_user_nav_menu);
 
-// header tab
-function show_rooms(){
-    document.getElementById('search_rooms').style.display='block';
-    document.getElementById('search_experiences').style.display='none';
-}
-
-function show_experiences(){
-    document.getElementById('search_rooms').style.display='none';
-    document.getElementById('search_experiences').style.display='block';
+// header tab + search
+function toggle_search_tab(){
+    document.getElementById('search_rooms').classList.toggle('hidden');
+    document.getElementById('search_rooms').classList.toggle('show');
+    document.getElementById('search_experiences').classList.toggle('hidden');
+    document.getElementById('search_experiences').classList.toggle('show');
 }
 
 // user_nav_modal 
-function toggle_user_nav_modal(){
-    if(document.getElementById('user_nav_modal').style.display === 'none'){
-        document.getElementById('user_nav_modal').style.display = 'block';
-    }else{
-        document.getElementById('user_nav_modal').style.display = 'none';
+function toggle_user_nav_menu(){
+    document.getElementById('user_nav_menu').classList.toggle('show');
+    document.getElementById('user_nav_menu').classList.toggle('hidden');
+}
+
+function close_user_nav_menu(e){
+    const menu = document.getElementById('user_nav_menu');
+    const btn = document.getElementById('btn_user_nav');
+    if(!(menu.contains(e.target) || btn.contains(e.target))){
+        document.getElementById('user_nav_menu').classList.toggle('show');
+        document.getElementById('user_nav_menu').classList.toggle('hidden');
     }
 }
+
