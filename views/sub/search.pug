@@ -1,30 +1,45 @@
 div.container
     div#search_rooms
         form(action="/search/rooms", method="get")
-            ul
-                li
-                    div= "위치"
-                    input(type="text", name="location" placeholder="위치" required)
-                li
-                    div= "체크인"
-                    input(type="date", name="checkin" required)
-                li
-                    div= "체크아웃"
-                    input(type="date", name="checkout" required)
-                li
-                    div= "인원"
-                    input(type="number", name="guests", value=1 required)
-                li
-                    button(type="submit")= "검색"
+            div.search_box
+                ul
+                    li
+                        label(for="rooms_location")
+                            div= "위치"
+                            input#rooms_location(type="text", name="location" placeholder="어디로 여행 가세요?" required)
+                    li
+                        label(for="rooms_checkin")
+                            div= "체크인"
+                            input#rooms_checkin(type="date", name="checkin" required)
+                    li
+                        label(for="rooms_checkout")
+                            div= "체크아웃"
+                            input#rooms_checkout(type="date", name="checkout" required)
+                    li
+                        label(for="rooms_guests")
+                            div= "인원"
+                            input#rooms_guests(type="number", name="guests", value=1 required)
+                        button.btn_search(type="submit", aria-label="검색")
+                            svg(viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;")
+                                g(fill="none")
+                                    path(d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9")
+
     
     div#search_experiences.hidden
         form(action="/search/experiences", method="get")
-            ul
-                li
-                    div= "위치"
-                    input(type="text", name="location" placeholder="위치" required)
-                li
-                    div= "날짜"
-                    input(type="date", name="day" required)
-                li
-                    button(type="submit")= "검색"
+            div.search_box
+                ul
+                    li
+                        label(for="exp_location")
+                            div= "위치"
+                            input#exp_location(type="text", name="location" placeholder="위치" required)
+                    li
+                        label(for="exp_day")
+                            div= "날짜"
+                            input#exp_day(type="date", name="day" required)
+                        button.btn_search(type="submit", aria-label="검색")
+                            svg(viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;")
+                                g(fill="none")
+                                    path(d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9")
+
+                    

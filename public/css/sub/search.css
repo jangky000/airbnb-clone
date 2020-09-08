@@ -1,26 +1,70 @@
 /* nav - search */
-#search_rooms{
+/* #search_rooms{
     text-align: center;
+} */
+
+.search_box{
+    max-width: 900px;
+    margin: 0px auto;
 }
 
-#search_rooms ul{
-    display: inline;
+.search_box ul{
+    
+    border-radius: 30px;
+    border: 1px solid #DDDDDD;
+    display: flex;
+    flex-direction: row;
+    align-items:center; /* 세로 정렬 */
+    overflow: hidden;
 }
 
-#search_rooms ul li{
-    margin: 0 5px;
-    display: inline-block;
+.search_box ul li{
+    text-align: left;
+    height: 100%;
+    flex: 1 1 0;
+    margin: 0;
+    padding: 10px 0;
+    padding-left: 20px;
+    border-radius: 20px;
+    /* position: relative; */
 }
 
-#search_experiences{
-    text-align: center;
+.search_box ul li:last-child{
+    /* flex: 0 0 0; */
+    /* margin: 0; */
+    position: relative;
 }
 
-#search_experiences ul{
-    display: inline;
+.search_box ul li:hover{
+    background-color: #EBEBEB;
 }
 
-#search_experiences ul li{
-    margin: 0 5px;
-    display: inline-block;
+.search_box ul li div{
+    font-size: 12px;
+    font-weight: bold;
 }
+
+.search_box ul li input{
+    all:unset;
+    width: 70%;
+}
+
+.search_box ul li .btn_search{
+    all:unset;
+    color:white;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    background-color: #FF385C;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+.search_box ul li .btn_search:hover{
+    cursor: pointer;
+}
+
+.search_box ul li .btn_search svg{
+    margin: 0 auto;
+}
+

@@ -1,8 +1,8 @@
 // window.onload = function(){}
 
 // addEventLister
-document.getElementById('tab_rooms').addEventListener('click', toggle_search_tab);
-document.getElementById('tab_experiences').addEventListener('click', toggle_search_tab);
+document.getElementById('tab_rooms').addEventListener('click', show_rooms_tab);
+document.getElementById('tab_experiences').addEventListener('click', show_experience_tab);
 document.getElementById('btn_user_nav').addEventListener('click', toggle_user_nav_menu);
 document.querySelector("body").addEventListener('click', close_user_nav_menu);
 document.getElementById("open_register").addEventListener('click', show_register_modal);
@@ -19,9 +19,18 @@ document.getElementById("birth").addEventListener('input', checkBirth);
 
 
 // header tab + search
-function toggle_search_tab(){
-    document.getElementById('search_rooms').classList.toggle('hidden');
-    document.getElementById('search_experiences').classList.toggle('hidden');
+function show_rooms_tab(){
+    if(document.getElementById('search_rooms').classList.contains('hidden')){
+        document.getElementById('search_rooms').classList.remove('hidden');
+        document.getElementById('search_experiences').classList.add('hidden');
+    }
+}
+
+function show_experience_tab(){
+    if(document.getElementById('search_experiences').classList.contains('hidden')){
+        document.getElementById('search_rooms').classList.add('hidden');
+        document.getElementById('search_experiences').classList.remove('hidden');
+    }
 }
 
 // user_nav_modal 
