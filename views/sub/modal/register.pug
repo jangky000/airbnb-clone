@@ -20,15 +20,15 @@ div.modal_container
     form(action="/user/register", method="post")
         ul
             li
-                input(type="email", name="email", placeholder="이메일" required)
+                input#email(type="email", name="email", placeholder="이메일" required autofocus)
             li
-                input(type="password", name="pwd", placeholder="패스워드" required)
+                input#pwd(type="password", name="pwd", placeholder="패스워드: 영문, 숫자, 특수문자 각 1회 이상, 총 8자리 이상" required)
             li
-                input(type="password", name="pwdCheck", placeholder="패스워드 확인" required)
+                input#pwdCheck(type="password", name="pwdCheck", placeholder="패스워드 확인" required)
             li
-                input(type="text", name="name", placeholder="이름" required)
+                input#name(type="text", name="name", placeholder="이름:한글만" required)
             li
-                input(type="text", name="birth", placeholder="생년월일:2000.01.01" required)
+                input#birth(type="text", name="birth", placeholder="생년월일:2000.01.01" required)
             li
                 button.submit(type="submit")= "회원가입"
             li

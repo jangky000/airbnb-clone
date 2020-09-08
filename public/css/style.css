@@ -1,8 +1,6 @@
 @import "sub/header.css";
 @import "sub/search.css";
 @import "sub/footer.css";
-@import "sub/modal/register.css";
-@import "sub/modal/login.css";
 
 body{
     color: #484848;
@@ -63,6 +61,8 @@ ul {
     border-radius: 10px;
     background-color: #ffffff;
     width: 30%;
+    height: 500px;
+    overflow-y: auto;
     padding:15px 15px;
 }
 

@@ -1,3 +1,5 @@
+@import "modal/content.css";
+
 /* header */
 #flex_header {
     display: flex;
