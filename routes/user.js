@@ -37,7 +37,7 @@ router.post('/register', async function(req, res){
     json['pwd'] = bcrypt.generateHash(json.pwd);
     delete json['pwdCheck'];
     userDAO.create(json);
-    res.send("<script>alert('회원가입이 완료되었습니다'); location.href='./login'</script>");
+    res.send("<script>alert('회원가입이 완료되었습니다'); location.href='/'</script>");
 });
 
 // 로그인 폼

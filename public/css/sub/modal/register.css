@@ -1,10 +1,10 @@
-#modal_register .modal_container{
+.modal_container{
     margin: 0 auto;
     width: 100%;
     position: relative;;
 }
 
-#modal_register .modal_container .close{
+.modal_container .close{
     all:unset;
     font-size: 24px;
     position: absolute;
@@ -12,18 +12,19 @@
     left: 0;
     line-height: 0;
 }
-#modal_register .modal_container .close:hover {
+
+.modal_container .close:hover {
     cursor: pointer;
 }
 
-#modal_register .modal_container h2{
+.modal_container h2{
     font-size: 16px;
     text-align: center;
     padding-bottom: 20px;
     border-bottom: 1px solid rgb(235, 235, 235);
 }
 
-#modal_register .modal_container button {
+.modal_container button {
     all:unset;
     width: 100%;
     display: flex;
@@ -37,24 +38,24 @@
     -webkit-box-sizing: border-box; /* 웹킷(Webkit) & 크롬(Chrome)*/
 }
 
-#modal_register .modal_container button div:nth-child(1){
+.modal_container button div:nth-child(1){
     margin-right: 10px;
 }
 
-#modal_register .modal_container button:hover{
+.modal_container button:hover{
     cursor: pointer;
 }
 
-#modal_register .modal_container .facebook{
+.modal_container .facebook{
     background-color: rgb(69, 104, 178);
     color: white;
 }
 
-#modal_register .modal_container .google{
+.modal_container .google{
     border: 2px solid rgb(118, 118, 118);
 }
 
-#modal_register .modal_container input{
+.modal_container input{
     width: 100%;
     border-radius: 5px;
     border: 1px solid rgb(170, 170, 170);
@@ -66,7 +67,7 @@
 }
 /* 출처: https://endorphin0710.tistory.com/75 [Festina Lente] */
 
-#modal_register .modal_container #btn_register{
+.modal_container .submit{
     width: 100%;
     color: white;
     background-color: #df3c47;

@@ -9,12 +9,15 @@
     position: absolute;
     top: 0px;
     left: 0px; */
-    flex-grow: 3;
+    /* flex-grow: 3; */
+    flex: 3 1 0;
 }
 
 #header .headcenter {
     text-align: center;
-    flex-grow: 6;
+    /* flex-grow: 6; */
+    flex: 6 1 0; 
+    /* grow, shrink, ba... */
 }
 
 #header .headcenter>ul{
@@ -32,7 +35,8 @@
     /* position: absolute;
     top: 0px;
     right: 0px; */
-    flex-grow: 1;
+    /* flex-grow: 3; */
+    flex: 3 1 0;
     
 }
 #header .headright>ul {

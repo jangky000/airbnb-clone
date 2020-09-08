@@ -6,8 +6,9 @@ document.getElementById('tab_experiences').addEventListener('click', toggle_sear
 document.getElementById('btn_user_nav').addEventListener('click', toggle_user_nav_menu);
 document.querySelector("body").addEventListener('click', close_user_nav_menu);
 document.getElementById("open_register").addEventListener('click', show_register_modal);
-document.querySelector(".close").addEventListener('click', close_modal);
-document.querySelector(".modal_overlay").addEventListener('click', close_modal);
+document.getElementById("open_login").addEventListener('click', show_login_modal);
+document.querySelectorAll(".close").forEach(e=>{e.addEventListener('click', close_modal);});
+document.querySelectorAll(".modal_overlay").forEach(e=>{e.addEventListener('click', close_modal);});
 
 
 // header tab + search
@@ -36,9 +37,18 @@ function show_register_modal(){
     modal.classList.toggle('hidden');
 }
 
+function show_login_modal(){
+    toggle_user_nav_menu();
+    const modal = document.getElementById("modal_login");
+    modal.classList.toggle('hidden');
+}
+
 
 function close_modal(e){
-    // const modal = e.target.parentNode;
-    const modal = document.querySelector(".modal");
+    let parent = e.target.parentNode;
+    while(!parent.classList.contains("modal") && parent !== document.querySelector("body")){
+        parent = parent.parentNode;
+    }
+    const modal = parent;
     modal.classList.toggle('hidden');
 }

@@ -38,7 +38,7 @@ div.container#flex_header
                             li
                                 a#open_register= "회원가입"
                             li
-                                a(href="/user/login")= "로그인"
+                                a#open_login= "로그인"
                             li
                                 a(href="/")= "숙소 호스트 되기"
                             li
@@ -50,3 +50,8 @@ div.modal#modal_register.hidden
     div.modal_overlay
     div.modal_content
         include ./modal/register.pug
+
+div.modal#modal_login.hidden
+    div.modal_overlay
+    div.modal_content
+        include ./modal/login.pug
