@@ -2,6 +2,8 @@
 @import "sub/search.css";
 @import "sub/footer.css";
 
+@import "search/rooms.css";
+
 body{
     color: #484848;
 }

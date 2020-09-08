@@ -21,6 +21,8 @@ document.getElementById("birth").addEventListener('input', checkBirth);
 // header tab + search
 function show_rooms_tab(){
     if(document.getElementById('search_rooms').classList.contains('hidden')){
+        document.getElementById('tab_rooms').classList.toggle('tab_selected');
+        document.getElementById('tab_experiences').classList.toggle('tab_selected');
         document.getElementById('search_rooms').classList.remove('hidden');
         document.getElementById('search_experiences').classList.add('hidden');
     }
@@ -28,6 +30,8 @@ function show_rooms_tab(){
 
 function show_experience_tab(){
     if(document.getElementById('search_experiences').classList.contains('hidden')){
+        document.getElementById('tab_rooms').classList.toggle('tab_selected');
+        document.getElementById('tab_experiences').classList.toggle('tab_selected');
         document.getElementById('search_rooms').classList.add('hidden');
         document.getElementById('search_experiences').classList.remove('hidden');
     }

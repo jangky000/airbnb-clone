@@ -2,35 +2,44 @@ extends ../layout/layout.pug
 
 block main
     div.container
-        div
-            div
-                span
-                    b= " 체크인: "
-                span= checkin
-                span
-                    b= " 체크아웃: "
-                span= checkout
-            div
-                span
-                    b=count
-                span=" 개의 숙소 "
-                span=" · "
-                span=" 게스트 "
-                span
-                    b=guests
-                span=" 명 이상 "
-                
-            div
+        div.left_container
+            div.search_info
                 ul
-                -for(let i=0; i<count; i++)
+                    li= count + "개의 숙소 "
+                    li= checkin + ' - ' + checkout
+                    li= " 게스트 " + guests + "명 이상 "
+            div.search_title
+                h2= location+"의 숙소"
+            div.search_tag
+                ul
+                    li 
+                        button(type="button")= "유연한 환불 정책"
                     li
-                        div
-                            div(style="width:300px; height:250px; text-align:center; overflow:hidden; display:inline-block;border-radius:20px;")
-                                img(src=list[i]['image'], alt=h4=list[i]['title'], style="height:300px;")
-                            div(style="width:40%; display:inline-block; transform:translate(0, -55%);")
-                                div=list[i]['place']
-                                h4=list[i]['title']
-                                div=list[i]['description1']
-                                div=list[i]['description2']
-                                div=list[i]['price']
-        
+                        button(type="button")= "숙소 유형"
+                    li
+                        button(type="button")= "요금"
+                    li
+                        button(type="button")= "즉시 예약"
+                    li
+                        button(type="button")= "침실과 침대"
+                    li
+                        button(type="button")= "필터 추가하기"
+            div.search_list
+                ul
+                    -for(let i=0; i<count; i++)
+                        li
+                            div.rooms_row
+                                div.rooms_img
+                                    img(src=list[i]['image'], alt=h4=list[i]['title'])
+                                div.rooms_info
+                                    div
+                                        div= list[i]['place']
+                                        div= list[i]['title']
+                                    div= "---"
+                                    div= list[i]['description1']
+                                    div= list[i]['description2']
+                                    div= "금방 마감이 되는 숙소입니다."
+                                    div=list[i]['price']
+            
+        div.right_container
+            div.googlemap= "지도"

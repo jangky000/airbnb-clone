@@ -33,6 +33,25 @@
     cursor: pointer;
 }
 
+#header .headcenter>ul>li>span{
+    padding: 10px 0;
+    position: relative;
+}
+
+/* 탭 기능 */
+.tab_selected:before{
+    background-color: black;
+    position: absolute;
+    height: 2px;
+    bottom: 0px;
+    margin-left: -9px;
+    left: 50%;
+    content: "";
+    width: 18px;
+    /* transition: all 0.5s; */
+}
+
+
 #header .headright {
     /* position: absolute;
     top: 0px;
@@ -41,7 +60,7 @@
     flex: 3 1 0;
     
 }
-#header .headright>ul {
+#header .headright>ul{
     display: flex;
     justify-content: flex-end;
 }

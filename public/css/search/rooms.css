@@ -1,0 +1,82 @@
+#main .container{
+    margin: 40px auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#main .container .left_container {
+    /* width:50%; */
+    flex: 2 1 0;
+}
+
+#main .container .left_container .search_info ul{
+    display: flex;
+    flex-direction: row;
+}
+
+#main .container .left_container .search_info ul li{
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+#main .container .left_container .search_title h2{
+    margin: 0;
+}
+
+#main .container .left_container .search_tag{
+    margin: 40px 0;
+}
+
+#main .container .left_container .search_tag ul{
+    display: flex;
+    flex-direction: row;
+}
+
+#main .container .left_container .search_tag ul li{
+    margin-right: 10px;
+}
+
+#main .container .left_container .search_tag ul li button{
+    all:unset;
+    font-size: 12px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 20px;
+}
+
+#main .container .left_container .search_tag ul li button:hover{
+    cursor: pointer;
+}
+
+#main .container .left_container .search_list .rooms_row .rooms_img{
+    width:300px; 
+    height:200px; 
+    text-align:center; 
+    overflow:hidden; 
+    display:inline-block;
+    border-radius:20px;
+}
+
+#main .container .left_container .search_list .rooms_row .rooms_img img{
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+
+#main .container .left_container .search_list .rooms_row .rooms_info{
+    width:40%; 
+    display:inline-block;
+}
+
+
+#main .container .right_container{
+    /*  */
+    /* width:50%; */
+    flex: 1 1 0;
+}
+
+#main .container .right_container .googlemap{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(190, 190, 190);
+}
