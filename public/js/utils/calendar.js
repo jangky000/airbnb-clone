@@ -1,6 +1,9 @@
 export function makeCalendar(year, month){
   // 컨테이너
   const calendarContainer = document.createElement('div');
+  calendarContainer.classList.add('calendarContainer');
+  calendarContainer.dataset.year = year;
+  calendarContainer.dataset.month = month;
 
   // 제목
   const calendarTitle = document.createElement('h2');
@@ -50,15 +53,33 @@ export function makeCalendar(year, month){
       }
       trtd += '</td>';
     }
+    if (countDay >= lastDay.getDate()) break;
     trtd += '</tr>';
   }
   tbody.innerHTML=trtd;
   calendarTable.append(tbody);
 
-
   calendarContainer.append(calendarTable);
-
 
   return calendarContainer;
 }
 
+export function prevYearMonth(currYear, currMonth){
+  currYear = parseInt(currYear);
+  currMonth = parseInt(currMonth);
+  if (currMonth === 1) return {year: currYear - 1, month: 12};
+  else return {year: currYear, month: currMonth- 1};
+}
+
+export function nextYearMonth(currYear, currMonth){
+  currYear = parseInt(currYear);
+  currMonth = parseInt(currMonth);
+  if (currMonth === 12) return {year: currYear + 1, month: 1};
+  else return {year:currYear, month: currMonth+1};
+}
+
+export function drawCalendar(selector, year, month){
+  const calendar = document.querySelector(selector);
+  calendar.innerHTML = "";
+  calendar.append(makeCalendar(year, month));
+}

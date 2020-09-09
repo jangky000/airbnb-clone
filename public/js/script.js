@@ -1,5 +1,5 @@
 // import './utils/calendar.js';
-import { makeCalendar } from './utils/calendar.js';
+import { makeCalendar, drawCalendar, prevYearMonth, nextYearMonth } from './utils/calendar.js';
 
 window.onload = function(){
     // drop down Event
@@ -145,14 +145,37 @@ function showAlert(e){
 }
 
 // calendar 제작
+document.getElementById("btn_previousMonth").addEventListener('click', renderPreviousCalendar);
+document.getElementById("btn_nextMonth").addEventListener('click', renderNextCalendar);
+
+
+
 (function initCalendar(){
     const today = new Date();
-    const currentYear = today.getFullYear();
-    const currentMonth = today.getMonth()+1; // get month: 0 ~ 11;
-    const leftCalendar = document.querySelector('.left_calendar');
-    leftCalendar.append(makeCalendar(currentYear, currentMonth));
-    const rightCalendar = document.querySelector('.right_calendar');
-    rightCalendar.append(makeCalendar(currentYear, currentMonth+1));
+    const nextMonth = nextYearMonth(today.getFullYear(), (today.getMonth()+1));
+
+    drawCalendar('.left_calendar', today.getFullYear(), (today.getMonth()+1)); // get month: 0 ~ 11;
+    drawCalendar('.right_calendar', nextMonth.year, nextMonth.month);
 })();
 
 
+
+function renderPreviousCalendar(){
+    const calendarContainer = document.querySelector('.left_calendar .calendarContainer');
+    const year = calendarContainer.dataset.year;
+    const month = calendarContainer.dataset.month;
+    const prevMonth = prevYearMonth(year, month);
+
+    drawCalendar('.left_calendar', prevMonth.year, prevMonth.month); // get month: 0 ~ 11;
+    drawCalendar('.right_calendar', year, month);
+}
+
+function renderNextCalendar(){
+    const calendarContainer = document.querySelector('.right_calendar .calendarContainer');
+    const year = calendarContainer.dataset.year;
+    const month = calendarContainer.dataset.month;
+    const nextMonth = nextYearMonth(year, month);
+
+    drawCalendar('.left_calendar', year, month); // get month: 0 ~ 11;
+    drawCalendar('.right_calendar', nextMonth.year, nextMonth.month);
+}

@@ -1,0 +1,31 @@
+.calendar_box .calendar .calendarContainer{
+    width: 100%;
+}
+
+.calendar_box .calendar .calendarContainer h2{
+    text-align: center;
+    font-size: 16px;
+}
+
+.calendar_box .calendar .calendarContainer table{
+    margin: 20px auto;
+    text-align: center;
+    width: 390px;
+}
+
+.calendar_box .calendar .calendarContainer table th{
+    font-size: 12px;
+}
+
+.calendar_box .calendar .calendarContainer table td{
+    font-size: 14px;
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.calendar_box .calendar .calendarContainer table td.day:hover{
+    border: 1px solid #777777;
+
+}

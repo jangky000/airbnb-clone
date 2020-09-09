@@ -69,3 +69,46 @@
     margin: 0 auto;
 }
 
+.calendar_box {
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 20px;
+    position: relative;
+    overflow: auto;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calendar_box .calendar{
+    width: 49%;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.calendar_box .btn_calendar{
+    all: unset;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 30px;
+}
+
+#btn_previousMonth{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+#btn_previousMonth:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#btn_nextMonth{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+#btn_nextMonth:hover{
+    cursor: pointer;
+    font-weight: bold;
+}

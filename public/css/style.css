@@ -3,6 +3,7 @@
 @import "sub/footer.css";
 
 @import "search/rooms.css";
+@import "utils/calendar.css";
 
 body{
     color: #484848;
@@ -19,6 +20,11 @@ a:hover{
 
 ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+div{
     margin: 0;
     padding: 0;
 }
