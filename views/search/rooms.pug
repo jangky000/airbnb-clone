@@ -32,14 +32,14 @@ block main
                                 div.rooms_img
                                     img(src=list[i]['image'], alt=h4=list[i]['title'])
                                 div.rooms_info
-                                    div
+                                    div.room_title
                                         div= list[i]['place']
-                                        div= list[i]['title']
-                                    div= "---"
-                                    div= list[i]['description1']
-                                    div= list[i]['description2']
-                                    div= "금방 마감이 되는 숙소입니다."
-                                    div=list[i]['price']
+                                        div.title= list[i]['title']
+                                    div(style="margin: 10px 0; width: 32px;border-top: 1px solid rgb(221, 221, 221);")
+                                    div.desc= list[i]['description1']
+                                    div.desc= list[i]['description2']
+                                    - const price = list[i]['price'].slice(3)+'/1박';
+                                    div.price= price
             
         div.right_container
             div.googlemap
