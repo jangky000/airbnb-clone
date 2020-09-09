@@ -54,6 +54,14 @@ function close_user_nav_menu(e){
     if(!(menu.contains(e.target) || btn.contains(e.target))&&!menu.classList.contains('hidden')){
         menu.classList.toggle('hidden');
     }
+
+    const rooms_calendar = document.getElementById('rooms_calendar');
+    const rooms_checkin = document.getElementById('rooms_checkin');
+    const rooms_checkout = document.getElementById('rooms_checkout');
+    if(!(rooms_calendar.contains(e.target) || rooms_checkin.contains(e.target) || rooms_checkout.contains(e.target))&&!rooms_calendar.classList.contains('hidden')){
+        rooms_calendar.classList.toggle('hidden');
+    }
+    
 }
 
 // 모달
@@ -146,12 +154,15 @@ function showAlert(e){
 
 // calendar 제작
 document.getElementById("rooms_checkin").addEventListener('click', searchDetailSelect);
-document.getElementById("rooms_checkin").addEventListener('click', searchDetailSelect);
+document.getElementById("rooms_checkout").addEventListener('click', searchDetailSelect);
 
 function searchDetailSelect(e){
     document.getElementById("rooms_checkin").classList.remove("selected");
     document.getElementById("rooms_checkout").classList.remove("selected");
     e.currentTarget.classList.add("selected");
+    if(document.getElementById("rooms_calendar").classList.contains("hidden")){
+        document.getElementById("rooms_calendar").classList.toggle("hidden");
+    }
 }
 
 

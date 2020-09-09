@@ -38,33 +38,45 @@ export function makeCalendar(year, month){
 
   const tbody = document.createElement('tbody');
   for (let i = 0; i < 6; i++) {
-    trtd += '<tr>';
+    // trtd += '<tr>';
+    const tr = document.createElement('tr');
     for (let j = 0; j < 7; j++) {
+      const td = document.createElement('td');
       if (i === 0 && !startCount && j === firstDay.getDay()) {
         startCount = 1;
       }
       if (!startCount) {
-        trtd += '<td>'
+        // trtd += '<td>'
       } else {
         let fullDate = year + '.' + month.toString().padStart(2, '0') + '.' + (countDay+1).toString().padStart(2, '0');
-        trtd += '<td class="day';
-        trtd += (todayStr > fullDate) ? ' notAvailable' : ' available';
-        trtd += (checkin && checkin === fullDate) ? ' checked' : '';
-        trtd += (checkout && checkin < fullDate && checkout > fullDate) ? ' between' : '';
-        trtd += (checkout && checkout === fullDate) ? ' checked' : '';
-        trtd += '"';
-        trtd += ` data-date="${month}월 ${countDay + 1}일" data-fdate="${fullDate}">`;
+        // trtd += '<td class="day';
+        td.classList.add('day');
+        // trtd += (todayStr > fullDate) ? ' notAvailable' : ' available';
+        td.classList.add((todayStr > fullDate) ? 'notAvailable' : 'available');
+        // trtd += (checkin && checkin === fullDate) ? ' checked' : '';
+        if(checkin && checkin === fullDate) td.classList.add('checked');
+        // trtd += (checkout && checkin < fullDate && checkout > fullDate) ? ' between' : '';
+        if(checkout && checkin < fullDate && checkout > fullDate) td.classList.add('between');
+        // trtd += (checkout && checkout === fullDate) ? ' checked' : '';
+        if(checkout && checkout === fullDate) td.classList.add('checked');
+        // trtd += '"';
+        // trtd += ` data-date="${month}월 ${countDay + 1}일" data-fdate="${fullDate}">`;
+        td.dataset.date = `${month}월 ${countDay + 1}일`;
+        td.dataset.fdate = fullDate;
       }
-      trtd += (startCount) ? ++countDay : '';
+      // trtd += (startCount) ? ++countDay : '';
+      td.textContent = (startCount) ? ++countDay : '';
       if (countDay === lastDay.getDate()) { 
         startCount = 0; 
       }
-      trtd += '</td>';
+      // trtd += '</td>';
+      tr.append(td);
     }
     if (countDay >= lastDay.getDate()) break;
-    trtd += '</tr>';
+    // trtd += '</tr>';
+    tbody.append(tr);
   }
-  tbody.innerHTML=trtd;
+  // tbody.innerHTML=trtd;
   calendarTable.append(tbody);
 
   calendarContainer.append(calendarTable);

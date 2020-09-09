@@ -6,6 +6,7 @@
 .search_box{
     max-width: 860px;
     margin: 0px auto;
+    position: relative;
 }
 
 .search_box ul{
@@ -111,4 +112,12 @@
 #btn_nextMonth:hover{
     cursor: pointer;
     font-weight: bold;
+}
+
+#rooms_calendar{
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 50;
+    background-color: #ffffff;
 }
