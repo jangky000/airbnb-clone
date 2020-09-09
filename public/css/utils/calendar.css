@@ -11,6 +11,7 @@
     margin: 20px auto;
     text-align: center;
     width: 390px;
+    border-spacing: 0px;
 }
 
 .calendar_box .calendar .calendarContainer table th{
@@ -25,7 +26,20 @@
     border: 1px solid rgba(0, 0, 0, 0);
 }
 
-.calendar_box .calendar .calendarContainer table td.day:hover{
+.calendar_box .calendar .calendarContainer table td.available:hover{
     border: 1px solid #777777;
+}
 
+.calendar_box .calendar .calendarContainer table td.checked{
+    background-color: rgb(68, 68, 68);
+    color:#ffffff;
+}
+.calendar_box .calendar .calendarContainer table td.between{
+    background-color: rgb(245, 245, 245);
+    border-radius: 0;
+    color:#000000;
+}
+
+.calendar_box .calendar .calendarContainer table td.notAvailable{
+    color:#bbbbbb;
 }

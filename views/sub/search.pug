@@ -9,12 +9,15 @@ div.container
                             input#rooms_location(type="text", name="location" placeholder="어디로 여행 가세요?" required)
                     li
                         label(for="rooms_checkin")
-                            div= "체크인"
-                            input#rooms_checkin(type="date", name="checkin" required)
+                            div#rooms_checkin.selected= "체크인"
+                                div.checkinDate= "날짜 추가"
+                                input(type="hidden", name="checkin")
+
                     li
                         label(for="rooms_checkout")
-                            div= "체크아웃"
-                            input#rooms_checkout(type="date", name="checkout" required)
+                            div#rooms_checkout= "체크아웃"
+                                div.checkoutDate= "날짜 추가"
+                                input(type="hidden", name="checkout")
                     li
                         label(for="rooms_guests")
                             div= "인원"

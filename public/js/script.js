@@ -141,13 +141,43 @@ function checkMsg(e, reg, checkWhat){
 }
 
 function showAlert(e){
-    alert(e.target)
+    alert(e.currentTarget.classList);
 }
 
 // calendar 제작
+document.getElementById("rooms_checkin").addEventListener('click', searchDetailSelect);
+document.getElementById("rooms_checkin").addEventListener('click', searchDetailSelect);
+
+function searchDetailSelect(e){
+    document.getElementById("rooms_checkin").classList.remove("selected");
+    document.getElementById("rooms_checkout").classList.remove("selected");
+    e.currentTarget.classList.add("selected");
+}
+
+
 document.getElementById("btn_previousMonth").addEventListener('click', renderPreviousCalendar);
 document.getElementById("btn_nextMonth").addEventListener('click', renderNextCalendar);
+document.getElementById("rooms_calendar").addEventListener('click', markDay);
 
+
+function markDay(e){
+    if(e.target.classList.contains('available')){
+        const rooms_checkin  = document.getElementById("rooms_checkin");
+        const rooms_checkout  = document.getElementById("rooms_checkout");
+
+        if(rooms_checkin.classList.contains('selected')){
+            rooms_checkin.querySelector(".checkinDate").textContent = e.target.dataset.date;
+            rooms_checkin.querySelector("input").value = e.target.dataset.fdate;
+            rooms_checkin.classList.toggle('selected');
+            rooms_checkout.classList.toggle('selected');
+            renderCurrentCalendar();
+        } else if(rooms_checkout.classList.contains('selected')){
+            rooms_checkout.querySelector(".checkoutDate").textContent = e.target.dataset.date;
+            rooms_checkout.querySelector("input").value = e.target.dataset.fdate;
+            renderCurrentCalendar();
+        }
+    }
+}   
 
 
 (function initCalendar(){
@@ -158,7 +188,15 @@ document.getElementById("btn_nextMonth").addEventListener('click', renderNextCal
     drawCalendar('.right_calendar', nextMonth.year, nextMonth.month);
 })();
 
+function renderCurrentCalendar(){
+    const calendarContainer = document.querySelector('.left_calendar .calendarContainer');
+    const year = calendarContainer.dataset.year;
+    const month = calendarContainer.dataset.month;
+    const nextMonth = nextYearMonth(year, month);
 
+    drawCalendar('.left_calendar', year, month); // get month: 0 ~ 11;
+    drawCalendar('.right_calendar', nextMonth.year, nextMonth.month);
+}
 
 function renderPreviousCalendar(){
     const calendarContainer = document.querySelector('.left_calendar .calendarContainer');

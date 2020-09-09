@@ -1,4 +1,8 @@
 export function makeCalendar(year, month){
+  // 
+  const checkin  = document.getElementById("rooms_checkin").querySelector("input").value;
+  const checkout  = document.getElementById("rooms_checkout").querySelector("input").value;
+
   // 컨테이너
   const calendarContainer = document.createElement('div');
   calendarContainer.classList.add('calendarContainer');
@@ -30,7 +34,7 @@ export function makeCalendar(year, month){
   let trtd = '';
   let startCount;
   let countDay = 0;
-  const markToday = today.getDate();
+  const todayStr = today.getFullYear() + '.' + (today.getMonth()+1).toString().padStart(2, '0') + '.' + (today.getDate()+1).toString().padStart(2, '0');
 
   const tbody = document.createElement('tbody');
   for (let i = 0; i < 6; i++) {
@@ -42,10 +46,14 @@ export function makeCalendar(year, month){
       if (!startCount) {
         trtd += '<td>'
       } else {
-        let fullDate = year + '.' + month.toString().padStart(2, '0') + '.' + countDay.toString().padStart(2, '0');
+        let fullDate = year + '.' + month.toString().padStart(2, '0') + '.' + (countDay+1).toString().padStart(2, '0');
         trtd += '<td class="day';
-        trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
-        trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
+        trtd += (todayStr > fullDate) ? ' notAvailable' : ' available';
+        trtd += (checkin && checkin === fullDate) ? ' checked' : '';
+        trtd += (checkout && checkin < fullDate && checkout > fullDate) ? ' between' : '';
+        trtd += (checkout && checkout === fullDate) ? ' checked' : '';
+        trtd += '"';
+        trtd += ` data-date="${month}월 ${countDay + 1}일" data-fdate="${fullDate}">`;
       }
       trtd += (startCount) ? ++countDay : '';
       if (countDay === lastDay.getDate()) { 
