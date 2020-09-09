@@ -1,21 +1,26 @@
-// window.onload = function(){}
+// import './utils/calendar.js';
+import { makeCalendar } from './utils/calendar.js';
 
-// addEventLister
-document.getElementById('tab_rooms').addEventListener('click', show_rooms_tab);
-document.getElementById('tab_experiences').addEventListener('click', show_experience_tab);
-document.getElementById('btn_user_nav').addEventListener('click', toggle_user_nav_menu);
-document.querySelector("body").addEventListener('click', close_user_nav_menu);
-document.getElementById("open_register").addEventListener('click', show_register_modal);
-document.getElementById("open_login").addEventListener('click', show_login_modal);
-document.querySelectorAll(".close").forEach(e=>{e.addEventListener('click', close_modal);});
-document.querySelectorAll(".modal_overlay").forEach(e=>{e.addEventListener('click', close_modal);});
+window.onload = function(){
+    // drop down Event
+    document.getElementById('tab_rooms').addEventListener('click', show_rooms_tab);
+    document.getElementById('tab_experiences').addEventListener('click', show_experience_tab);
+    document.getElementById('btn_user_nav').addEventListener('click', toggle_user_nav_menu);
+    document.querySelector("body").addEventListener('click', close_user_nav_menu);
 
-// 유효성 검사
-document.getElementById("email").addEventListener('input', checkEmail);
-document.getElementById("pwd").addEventListener('input', checkPwd);
-document.getElementById("pwdCheck").addEventListener('input', checkPwdCheck);
-document.getElementById("name").addEventListener('input', checkName);
-document.getElementById("birth").addEventListener('input', checkBirth);
+    // modal Event
+    document.getElementById("open_register").addEventListener('click', show_register_modal);
+    document.getElementById("open_login").addEventListener('click', show_login_modal);
+    document.querySelectorAll(".close").forEach(e=>{e.addEventListener('click', close_modal);});
+    document.querySelectorAll(".modal_overlay").forEach(e=>{e.addEventListener('click', close_modal);});
+
+    // 회원 가입 체크 이벤트
+    document.getElementById("email").addEventListener('input', checkEmail);
+    document.getElementById("pwd").addEventListener('input', checkPwd);
+    document.getElementById("pwdCheck").addEventListener('input', checkPwdCheck);
+    document.getElementById("name").addEventListener('input', checkName);
+    document.getElementById("birth").addEventListener('input', checkBirth);
+}
 
 
 // header tab + search
@@ -90,7 +95,7 @@ function checkPwd(e){
 
 function checkPwdCheck(e){
     // 비밀번호 일치 확인
-    const pwd = e.target.parentElement.previousElementSibling.children[0].value;
+    const pwd = e.target.parentElement.previousElementSibling.querySelector("input").value;
     const pwdCheck = e.target.value;
     let result_html = pwd === pwdCheck && pwd !== '' && pwdCheck !== '' ? `<div style='color:green;'>비밀번호 일치</div>` : `<div style='color:red;'>비밀번호를 확인해주세요</div>`;
 
@@ -139,4 +144,15 @@ function showAlert(e){
     alert(e.target)
 }
 
-//
+// calendar 제작
+(function initCalendar(){
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth()+1; // get month: 0 ~ 11;
+    const leftCalendar = document.querySelector('.left_calendar');
+    leftCalendar.append(makeCalendar(currentYear, currentMonth));
+    const rightCalendar = document.querySelector('.right_calendar');
+    rightCalendar.append(makeCalendar(currentYear, currentMonth+1));
+})();
+
+

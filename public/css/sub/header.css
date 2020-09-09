@@ -38,8 +38,7 @@
     position: relative;
 }
 
-/* 탭 기능 */
-.tab_selected:before{
+.tab_menu::before {
     background-color: black;
     position: absolute;
     height: 2px;
@@ -48,7 +47,13 @@
     left: 50%;
     content: "";
     width: 18px;
-    /* transition: all 0.5s; */
+    transform: scaleX(0);
+    transition: 0.2s -ms-transform cubic-bezier(0, 0, 0.1, 1),0.2s -webkit-transform cubic-bezier(0, 0, 0.1, 1),0.2s transform cubic-bezier(0, 0, 0.1, 1);
+}
+
+/* 탭 기능 */
+.tab_selected:before{
+    transform: scaleX(1);
 }
 
 
