@@ -1,5 +1,5 @@
 import { $, getID, $All } from './utils/utilfunc.js';
-import { makeCalendar, drawCalendar, prevYearMonth, nextYearMonth } from './utils/calendar.js';
+import {drawCalendar, prevYearMonth, nextYearMonth } from './utils/calendar.js';
 
 window.onload = function(){
     // drop down Event
@@ -13,6 +13,7 @@ window.onload = function(){
     getID("open_login").addEventListener('click', show_login_modal);
     $All(".close").forEach(e=>{e.addEventListener('click', close_modal);});
     $All(".modal_overlay").forEach(e=>{e.addEventListener('click', close_modal);});
+    getID("callRegister").addEventListener('click', loginToRegister);
 
     // 회원 가입 체크 이벤트
     getID("email").addEventListener('input', checkEmail);
@@ -20,7 +21,19 @@ window.onload = function(){
     getID("pwdCheck").addEventListener('input', checkPwdCheck);
     getID("name").addEventListener('input', checkName);
     getID("birth").addEventListener('input', checkBirth);
+
+    // 달력 펼치기
+    getID("rooms_checkin").addEventListener('click', searchDetailSelect);
+    getID("rooms_checkout").addEventListener('click', searchDetailSelect);
+
+    // 달력 조작
+    getID("btn_previousMonth").addEventListener('click', renderPreviousCalendar);
+    getID("btn_nextMonth").addEventListener('click', renderNextCalendar);
+    getID("rooms_calendar").addEventListener('click', markDay);
 }
+
+
+
 
 
 // header tab + search
@@ -42,7 +55,7 @@ function show_experience_tab(){
     }
 }
 
-// user_nav_modal 
+// user_nav_menu 드랍다운
 function toggle_user_nav_menu(){
     getID('user_nav_menu').classList.toggle('hidden');
 }
@@ -86,6 +99,13 @@ function close_modal(e){
     const modal = parent;
     modal.classList.toggle('hidden');
 }
+
+// move from login to register
+function loginToRegister(e){
+    close_modal(e);
+    show_register_modal(e);
+}
+
 
 // 유효성 검사
 function checkEmail(e){
@@ -148,13 +168,15 @@ function checkMsg(e, reg, checkWhat){
     }
 }
 
-function showAlert(e){
-    alert(e.currentTarget.classList);
-}
-
 // calendar 제작
-getID("rooms_checkin").addEventListener('click', searchDetailSelect);
-getID("rooms_checkout").addEventListener('click', searchDetailSelect);
+// 달력 초기 렌더링
+(function initCalendar(){
+    const today = new Date();
+    const nextMonth = nextYearMonth(today.getFullYear(), (today.getMonth()+1));
+
+    drawCalendar('.left_calendar', today.getFullYear(), (today.getMonth()+1)); // get month: 0 ~ 11;
+    drawCalendar('.right_calendar', nextMonth.year, nextMonth.month);
+})();
 
 function searchDetailSelect(e){
     getID("rooms_checkin").classList.remove("selected");
@@ -164,11 +186,6 @@ function searchDetailSelect(e){
         getID("rooms_calendar").classList.toggle("hidden");
     }
 }
-
-
-getID("btn_previousMonth").addEventListener('click', renderPreviousCalendar);
-getID("btn_nextMonth").addEventListener('click', renderNextCalendar);
-getID("rooms_calendar").addEventListener('click', markDay);
 
 
 function markDay(e){
@@ -190,15 +207,6 @@ function markDay(e){
         }
     }
 }   
-
-
-(function initCalendar(){
-    const today = new Date();
-    const nextMonth = nextYearMonth(today.getFullYear(), (today.getMonth()+1));
-
-    drawCalendar('.left_calendar', today.getFullYear(), (today.getMonth()+1)); // get month: 0 ~ 11;
-    drawCalendar('.right_calendar', nextMonth.year, nextMonth.month);
-})();
 
 function renderCurrentCalendar(){
     const calendarContainer = $('.left_calendar .calendarContainer');
