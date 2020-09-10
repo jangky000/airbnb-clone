@@ -41,17 +41,20 @@ window.onload = function(){
 
 
 function scrollHandler(){
+    console.log('?');
     if(window.scrollY >= 10 && !$('#search').classList.contains('scroll')){
         $('#header').classList.add('scroll');
         $('#search').classList.add('scroll');
         $('#header .headcenter .tab').classList.add('scroll');
         $('#mini_search').classList.add('scroll');
+        $('#main').classList.add('scroll');
     }
     else if(window.scrollY < 10 && $('#search').classList.contains('scroll')){
         $('#header').classList.remove('scroll');
         $('#search').classList.remove('scroll');
         $('#header .headcenter .tab').classList.remove('scroll');
         $('#mini_search').classList.remove('scroll');
+        $('#main').classList.remove('scroll');
     }
         
 }

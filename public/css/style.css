@@ -43,6 +43,9 @@ button:focus{
     width: 100%;
 }
 
+#main.scroll{
+    margin-top: 200px;
+}
 
 .container{
     position: relative;
