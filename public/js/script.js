@@ -5,6 +5,9 @@ window.onload = function(){
     // 스크롤 이벤트
     window.addEventListener('scroll', scrollHandler);
 
+    // mini search
+    $("#mini_search button").addEventListener('click', show_search_bar);
+
     // drop down Event
     getID('tab_rooms').addEventListener('click', show_rooms_tab);
     getID('tab_experiences').addEventListener('click', show_experience_tab);
@@ -33,14 +36,33 @@ window.onload = function(){
     getID("btn_previousMonth").addEventListener('click', renderPreviousCalendar);
     getID("btn_nextMonth").addEventListener('click', renderNextCalendar);
     getID("rooms_calendar").addEventListener('click', markDay);
+
 }
 
 
 function scrollHandler(){
-    if(window.scrollY >= 10 && !$('#header .container').classList.contains('scroll'))
-        $('#header .container').classList.add('scroll');
-    else if(window.scrollY < 10 && $('#header .container').classList.contains('scroll'))
-    $('#header .container').classList.remove('scroll');
+    if(window.scrollY >= 10 && !$('#search').classList.contains('scroll')){
+        $('#header').classList.add('scroll');
+        $('#search').classList.add('scroll');
+        $('#header .headcenter .tab').classList.add('scroll');
+        $('#mini_search').classList.add('scroll');
+    }
+    else if(window.scrollY < 10 && $('#search').classList.contains('scroll')){
+        $('#header').classList.remove('scroll');
+        $('#search').classList.remove('scroll');
+        $('#header .headcenter .tab').classList.remove('scroll');
+        $('#mini_search').classList.remove('scroll');
+    }
+        
+}
+
+function show_search_bar(e){
+    if($('#search').classList.contains('scroll')){
+        // $('#header').classList.remove('scroll');
+        $('#search').classList.remove('scroll');
+        $('#header .headcenter .tab').classList.remove('scroll');
+        $('#mini_search').classList.remove('scroll');
+    }
 }
 
 

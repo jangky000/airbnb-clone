@@ -31,6 +31,10 @@ div{
     padding: 0;
 }
 
+button:focus{
+    outline: none;
+}
+
 .clearfix{*zoom:1;}
 .clearfix:before, .clearfix:after {display: block; content: '';line-height: 0;}
 .clearfix:after {clear: both;}
@@ -38,6 +42,7 @@ div{
 #wrap {
     width: 100%;
 }
+
 
 .container{
     position: relative;

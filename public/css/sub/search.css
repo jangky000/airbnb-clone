@@ -1,6 +1,21 @@
-#search {
-    position: fixed;
-    z-index: 20;
+#search{
+    margin: 0 auto;
+    width: 100%;
+    transition: all 0.1s ease-in;
+}
+
+
+
+#search.scroll{
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    transform: translateY(-100px);
+    opacity: 0;
+}
+
+#search .container {
+    background-color: rgb(255, 255, 255);
 }
 
 .search_box{
@@ -10,7 +25,6 @@
 }
 
 .search_box ul{
-    
     border-radius: 30px;
     border: 1px solid #DDDDDD;
     display: flex;
