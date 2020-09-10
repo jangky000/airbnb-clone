@@ -1,7 +1,6 @@
 #main .container{
     margin: 40px auto;
     display: flex;
-    flex-direction: row;
 }
 
 #main .left_container {
@@ -10,7 +9,6 @@
 
 #main .search_info ul{
     display: flex;
-    flex-direction: row;
 }
 
 #main .search_info ul li{
@@ -28,7 +26,6 @@
 
 #main .search_tag ul{
     display: flex;
-    flex-direction: row;
 }
 
 #main .search_tag ul li{
@@ -49,7 +46,6 @@
 
 #main .rooms_row {
     display: flex;
-    flex-direction: row;
 }
 #main .rooms_img{
     width:300px; 
