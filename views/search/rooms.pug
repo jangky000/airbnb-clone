@@ -26,7 +26,7 @@ block main
                         button(type="button")= "필터 추가하기"
             div.search_list
                 ul
-                    -for(let i=0; i<count; i++)
+                    -for(let i=0; i<list.length; i++)
                         li
                             div.rooms_row
                                 div.rooms_img
@@ -40,6 +40,14 @@ block main
                                     div.desc= list[i]['description2']
                                     - const price = list[i]['price'].slice(3)+'/1박';
                                     div.price= price
+            div.pages
+                ul
+                    -for(let i = 0; i<pageArr.length; i++)
+                        li
+                            -if(pageArr[i].curPage)
+                                a.curPage(href=pageArr[i].href)= pageArr[i].name
+                            -else
+                                a(href=pageArr[i].href)= pageArr[i].name
             
         div.right_container
             div.googlemap

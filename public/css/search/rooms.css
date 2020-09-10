@@ -85,6 +85,33 @@
     font-size: 18px;
 }
 
+#main .pages {
+    width: 40%;
+    margin: 20px auto;
+}
+
+#main .pages ul{
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#main .pages a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#main .pages .curPage{
+    background-color: rgb(114, 114, 114);
+    color: white;
+}
+
+
 
 #main .container .right_container{
     flex: 1 1 0;
