@@ -1,63 +1,63 @@
-// import './utils/calendar.js';
+import { $, getID, $All } from './utils/utilfunc';
 import { makeCalendar, drawCalendar, prevYearMonth, nextYearMonth } from './utils/calendar.js';
 
 window.onload = function(){
     // drop down Event
-    document.getElementById('tab_rooms').addEventListener('click', show_rooms_tab);
-    document.getElementById('tab_experiences').addEventListener('click', show_experience_tab);
-    document.getElementById('btn_user_nav').addEventListener('click', toggle_user_nav_menu);
-    document.querySelector("body").addEventListener('click', close_user_nav_menu);
+    getID('tab_rooms').addEventListener('click', show_rooms_tab);
+    getID('tab_experiences').addEventListener('click', show_experience_tab);
+    getID('btn_user_nav').addEventListener('click', toggle_user_nav_menu);
+    $("body").addEventListener('click', close_user_nav_menu);
 
     // modal Event
-    document.getElementById("open_register").addEventListener('click', show_register_modal);
-    document.getElementById("open_login").addEventListener('click', show_login_modal);
-    document.querySelectorAll(".close").forEach(e=>{e.addEventListener('click', close_modal);});
-    document.querySelectorAll(".modal_overlay").forEach(e=>{e.addEventListener('click', close_modal);});
+    getID("open_register").addEventListener('click', show_register_modal);
+    getID("open_login").addEventListener('click', show_login_modal);
+    $All(".close").forEach(e=>{e.addEventListener('click', close_modal);});
+    $All(".modal_overlay").forEach(e=>{e.addEventListener('click', close_modal);});
 
     // 회원 가입 체크 이벤트
-    document.getElementById("email").addEventListener('input', checkEmail);
-    document.getElementById("pwd").addEventListener('input', checkPwd);
-    document.getElementById("pwdCheck").addEventListener('input', checkPwdCheck);
-    document.getElementById("name").addEventListener('input', checkName);
-    document.getElementById("birth").addEventListener('input', checkBirth);
+    getID("email").addEventListener('input', checkEmail);
+    getID("pwd").addEventListener('input', checkPwd);
+    getID("pwdCheck").addEventListener('input', checkPwdCheck);
+    getID("name").addEventListener('input', checkName);
+    getID("birth").addEventListener('input', checkBirth);
 }
 
 
 // header tab + search
 function show_rooms_tab(){
-    if(document.getElementById('search_rooms').classList.contains('hidden')){
-        document.getElementById('tab_rooms').classList.toggle('tab_selected');
-        document.getElementById('tab_experiences').classList.toggle('tab_selected');
-        document.getElementById('search_rooms').classList.remove('hidden');
-        document.getElementById('search_experiences').classList.add('hidden');
+    if(getID('search_rooms').classList.contains('hidden')){
+        getID('tab_rooms').classList.toggle('tab_selected');
+        getID('tab_experiences').classList.toggle('tab_selected');
+        getID('search_rooms').classList.remove('hidden');
+        getID('search_experiences').classList.add('hidden');
     }
 }
 
 function show_experience_tab(){
-    if(document.getElementById('search_experiences').classList.contains('hidden')){
-        document.getElementById('tab_rooms').classList.toggle('tab_selected');
-        document.getElementById('tab_experiences').classList.toggle('tab_selected');
-        document.getElementById('search_rooms').classList.add('hidden');
-        document.getElementById('search_experiences').classList.remove('hidden');
+    if(getID('search_experiences').classList.contains('hidden')){
+        getID('tab_rooms').classList.toggle('tab_selected');
+        getID('tab_experiences').classList.toggle('tab_selected');
+        getID('search_rooms').classList.add('hidden');
+        getID('search_experiences').classList.remove('hidden');
     }
 }
 
 // user_nav_modal 
 function toggle_user_nav_menu(){
-    document.getElementById('user_nav_menu').classList.toggle('hidden');
+    getID('user_nav_menu').classList.toggle('hidden');
 }
 
 // 외부 영역을 클릭하면 메뉴바 닫기
 function close_user_nav_menu(e){
-    const menu = document.getElementById('user_nav_menu');
-    const btn = document.getElementById('btn_user_nav');
+    const menu = getID('user_nav_menu');
+    const btn = getID('btn_user_nav');
     if(!(menu.contains(e.target) || btn.contains(e.target))&&!menu.classList.contains('hidden')){
         menu.classList.toggle('hidden');
     }
 
-    const rooms_calendar = document.getElementById('rooms_calendar');
-    const rooms_checkin = document.getElementById('rooms_checkin');
-    const rooms_checkout = document.getElementById('rooms_checkout');
+    const rooms_calendar = getID('rooms_calendar');
+    const rooms_checkin = getID('rooms_checkin');
+    const rooms_checkout = getID('rooms_checkout');
     if(!(rooms_calendar.contains(e.target) || rooms_checkin.contains(e.target) || rooms_checkout.contains(e.target))&&!rooms_calendar.classList.contains('hidden')){
         rooms_calendar.classList.toggle('hidden');
     }
@@ -67,20 +67,20 @@ function close_user_nav_menu(e){
 // 모달
 function show_register_modal(){
     toggle_user_nav_menu();
-    const modal = document.getElementById("modal_register");
+    const modal = getID("modal_register");
     modal.classList.toggle('hidden');
 }
 
 function show_login_modal(){
     toggle_user_nav_menu();
-    const modal = document.getElementById("modal_login");
+    const modal = getID("modal_login");
     modal.classList.toggle('hidden');
 }
 
 // 모달창 닫기
 function close_modal(e){
     let parent = e.target.parentNode;
-    while(!parent.classList.contains("modal") && parent !== document.querySelector("body")){
+    while(!parent.classList.contains("modal") && parent !== $("body")){
         parent = parent.parentNode;
     }
     const modal = parent;
@@ -153,29 +153,29 @@ function showAlert(e){
 }
 
 // calendar 제작
-document.getElementById("rooms_checkin").addEventListener('click', searchDetailSelect);
-document.getElementById("rooms_checkout").addEventListener('click', searchDetailSelect);
+getID("rooms_checkin").addEventListener('click', searchDetailSelect);
+getID("rooms_checkout").addEventListener('click', searchDetailSelect);
 
 function searchDetailSelect(e){
-    document.getElementById("rooms_checkin").classList.remove("selected");
-    document.getElementById("rooms_checkout").classList.remove("selected");
+    getID("rooms_checkin").classList.remove("selected");
+    getID("rooms_checkout").classList.remove("selected");
     e.currentTarget.classList.add("selected");
-    if(document.getElementById("rooms_calendar").classList.contains("hidden")){
-        document.getElementById("rooms_calendar").classList.toggle("hidden");
+    if(getID("rooms_calendar").classList.contains("hidden")){
+        getID("rooms_calendar").classList.toggle("hidden");
     }
 }
 
 
-document.getElementById("btn_previousMonth").addEventListener('click', renderPreviousCalendar);
-document.getElementById("btn_nextMonth").addEventListener('click', renderNextCalendar);
-document.getElementById("rooms_calendar").addEventListener('click', markDay);
+getID("btn_previousMonth").addEventListener('click', renderPreviousCalendar);
+getID("btn_nextMonth").addEventListener('click', renderNextCalendar);
+getID("rooms_calendar").addEventListener('click', markDay);
 
 
 function markDay(e){
     e.stopPropagation(); // 상위로 이벤트 발생을 막음
     if(e.target.classList.contains('available')){
-        const rooms_checkin  = document.getElementById("rooms_checkin");
-        const rooms_checkout  = document.getElementById("rooms_checkout");
+        const rooms_checkin  = getID("rooms_checkin");
+        const rooms_checkout  = getID("rooms_checkout");
 
         if(rooms_checkin.classList.contains('selected')){
             rooms_checkin.querySelector(".checkinDate").textContent = e.target.dataset.date;
@@ -201,7 +201,7 @@ function markDay(e){
 })();
 
 function renderCurrentCalendar(){
-    const calendarContainer = document.querySelector('.left_calendar .calendarContainer');
+    const calendarContainer = $('.left_calendar .calendarContainer');
     const year = calendarContainer.dataset.year;
     const month = calendarContainer.dataset.month;
     const nextMonth = nextYearMonth(year, month);
@@ -211,7 +211,7 @@ function renderCurrentCalendar(){
 }
 
 function renderPreviousCalendar(){
-    const calendarContainer = document.querySelector('.left_calendar .calendarContainer');
+    const calendarContainer = $('.left_calendar .calendarContainer');
     const year = calendarContainer.dataset.year;
     const month = calendarContainer.dataset.month;
     const prevMonth = prevYearMonth(year, month);
@@ -221,7 +221,7 @@ function renderPreviousCalendar(){
 }
 
 function renderNextCalendar(){
-    const calendarContainer = document.querySelector('.right_calendar .calendarContainer');
+    const calendarContainer = $('.right_calendar .calendarContainer');
     const year = calendarContainer.dataset.year;
     const month = calendarContainer.dataset.month;
     const nextMonth = nextYearMonth(year, month);
