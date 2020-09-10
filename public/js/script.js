@@ -2,6 +2,9 @@ import { $, getID, $All } from './utils/utilfunc.js';
 import {drawCalendar, prevYearMonth, nextYearMonth } from './utils/calendar.js';
 
 window.onload = function(){
+    // 스크롤 이벤트
+    window.addEventListener('scroll', scrollHandler);
+
     // drop down Event
     getID('tab_rooms').addEventListener('click', show_rooms_tab);
     getID('tab_experiences').addEventListener('click', show_experience_tab);
@@ -33,6 +36,12 @@ window.onload = function(){
 }
 
 
+function scrollHandler(){
+    if(window.scrollY >= 10 && !$('#header .container').classList.contains('scroll'))
+        $('#header .container').classList.add('scroll');
+    else if(window.scrollY < 10 && $('#header .container').classList.contains('scroll'))
+    $('#header .container').classList.remove('scroll');
+}
 
 
 

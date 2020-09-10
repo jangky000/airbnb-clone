@@ -1,3 +1,7 @@
+#search {
+    position: fixed;
+    z-index: 20;
+}
 
 .search_box{
     max-width: 860px;
