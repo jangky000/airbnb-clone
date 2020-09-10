@@ -1,4 +1,4 @@
-import { $, getID, $All } from './utils/utilfunc';
+import { $, getID, $All } from './utils/utilfunc.js';
 import { makeCalendar, drawCalendar, prevYearMonth, nextYearMonth } from './utils/calendar.js';
 
 window.onload = function(){

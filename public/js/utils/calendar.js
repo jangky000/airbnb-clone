@@ -1,8 +1,15 @@
 export function makeCalendar(year, month){
-  // 
+  // 사용자 선택 값 가져오기
   const checkin  = document.getElementById("rooms_checkin").querySelector("input").value;
   const checkout  = document.getElementById("rooms_checkout").querySelector("input").value;
 
+  // 데이터
+  const dayNameList = ['일', '월', '화', '수', '목', '금', '토'];
+  const firstDay = new Date(year, month-1, 1);
+  const lastDay = new Date(year, month, 0);
+  const today = new Date();
+
+  // 렌더링
   // 컨테이너
   const calendarContainer = document.createElement('div');
   calendarContainer.classList.add('calendarContainer');
@@ -19,26 +26,20 @@ export function makeCalendar(year, month){
 
   // 일월화수목금토
   const tableHead = document.createElement('tr');
-  ['일', '월', '화', '수', '목', '금', '토'].forEach(dayname => {
+  dayNameList.forEach(dayname => {
     const tableCell = document.createElement('th');
     tableCell.innerText = dayname;
     tableHead.append(tableCell);
   });
   calendarTable.append(tableHead);
 
-  // 날짜 추가
-  const firstDay = new Date(year, month-1, 1);
-  const lastDay = new Date(year, month, 0);
-  const today = new Date();
-
-  let trtd = '';
+  // 테이블 바디 만들기
   let startCount;
   let countDay = 0;
   const todayStr = today.getFullYear() + '.' + (today.getMonth()+1).toString().padStart(2, '0') + '.' + (today.getDate()+1).toString().padStart(2, '0');
 
   const tbody = document.createElement('tbody');
   for (let i = 0; i < 6; i++) {
-    // trtd += '<tr>';
     const tr = document.createElement('tr');
     for (let j = 0; j < 7; j++) {
       const td = document.createElement('td');
@@ -46,37 +47,25 @@ export function makeCalendar(year, month){
         startCount = 1;
       }
       if (!startCount) {
-        // trtd += '<td>'
       } else {
         let fullDate = year + '.' + month.toString().padStart(2, '0') + '.' + (countDay+1).toString().padStart(2, '0');
-        // trtd += '<td class="day';
         td.classList.add('day');
-        // trtd += (todayStr > fullDate) ? ' notAvailable' : ' available';
         td.classList.add((todayStr > fullDate) ? 'notAvailable' : 'available');
-        // trtd += (checkin && checkin === fullDate) ? ' checked' : '';
         if(checkin && checkin === fullDate) td.classList.add('checked');
-        // trtd += (checkout && checkin < fullDate && checkout > fullDate) ? ' between' : '';
         if(checkout && checkin < fullDate && checkout > fullDate) td.classList.add('between');
-        // trtd += (checkout && checkout === fullDate) ? ' checked' : '';
         if(checkout && checkout === fullDate) td.classList.add('checked');
-        // trtd += '"';
-        // trtd += ` data-date="${month}월 ${countDay + 1}일" data-fdate="${fullDate}">`;
         td.dataset.date = `${month}월 ${countDay + 1}일`;
         td.dataset.fdate = fullDate;
       }
-      // trtd += (startCount) ? ++countDay : '';
       td.textContent = (startCount) ? ++countDay : '';
       if (countDay === lastDay.getDate()) { 
         startCount = 0; 
       }
-      // trtd += '</td>';
       tr.append(td);
     }
     if (countDay >= lastDay.getDate()) break;
-    // trtd += '</tr>';
     tbody.append(tr);
   }
-  // tbody.innerHTML=trtd;
   calendarTable.append(tbody);
 
   calendarContainer.append(calendarTable);
