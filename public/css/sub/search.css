@@ -1,7 +1,3 @@
-/* nav - search */
-/* #search_rooms{
-    text-align: center;
-} */
 
 .search_box{
     max-width: 860px;
@@ -27,13 +23,10 @@
     padding: 10px 0;
     padding-left: 20px;
     border-radius: 20px;
-    /* position: relative; */
     font-size: 14px;
 }
 
 .search_box ul li:last-child{
-    /* flex: 0 0 0; */
-    /* margin: 0; */
     position: relative;
 }
 

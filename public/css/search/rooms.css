@@ -4,39 +4,38 @@
     flex-direction: row;
 }
 
-#main .container .left_container {
-    /* width:50%; */
+#main .left_container {
     flex: 2 1 0;
 }
 
-#main .container .left_container .search_info ul{
+#main .search_info ul{
     display: flex;
     flex-direction: row;
 }
 
-#main .container .left_container .search_info ul li{
+#main .search_info ul li{
     font-size: 14px;
     margin-right: 10px;
 }
 
-#main .container .left_container .search_title h2{
+#main .search_title h2{
     margin: 0;
 }
 
-#main .container .left_container .search_tag{
+#main .search_tag{
     margin: 40px 0;
 }
 
-#main .container .left_container .search_tag ul{
+#main .search_tag ul{
     display: flex;
     flex-direction: row;
 }
 
-#main .container .left_container .search_tag ul li{
+#main .search_tag ul li{
     margin-right: 10px;
 }
 
-#main .container .left_container .search_tag ul li button{
+#main .search_tag ul li button{
     all:unset;
     font-size: 12px;
     padding: 10px;
@@ -44,15 +43,15 @@
     border-radius: 20px;
 }
 
-#main .container .left_container .search_tag ul li button:hover{
+#main .search_tag ul li button:hover{
     cursor: pointer;
 }
 
-#main .container .left_container .search_list .rooms_row {
+#main .rooms_row {
     display: flex;
     flex-direction: row;
 }
-#main .container .left_container .search_list .rooms_row .rooms_img{
+#main .rooms_img{
     width:300px; 
     height:200px; 
     text-align:center; 
@@ -60,13 +59,13 @@
     border-radius:20px;
 }
 
-#main .container .left_container .search_list .rooms_row .rooms_img img{
+#main .rooms_img img{
     width: 300px;
     height: 200px;
     object-fit: cover;
 }
 
-#main .container .left_container .search_list .rooms_row .rooms_info{
+#main .rooms_info{
     margin: 0 20px;
     width:60%;
     display: flex;
@@ -74,19 +73,17 @@
     align-items: flex-start;
 }
 
-#main .container .left_container .search_list .rooms_row .rooms_info .room_title .title{
+#main .room_title .title{
     font-size: 18px;
     font-weight: bold;
 }
 
-#main .container .left_container .search_list .rooms_row .rooms_info .desc{
+#main .rooms_info .desc{
     font-size: 14px;
     color: rgb(113, 113, 113);
 }
 
-#main .container .left_container .search_list .rooms_row .rooms_info .price{
-    /* text-align: right; */
-    /* justify-self: flex-end; */
+#main .rooms_info .price{
     align-self: flex-end;
     font-weight: bold;
     font-size: 18px;
@@ -94,8 +91,6 @@
 
 
 #main .container .right_container{
-    /*  */
-    /* width:50%; */
     flex: 1 1 0;
     position: relative;
 }

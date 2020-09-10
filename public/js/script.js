@@ -172,6 +172,7 @@ document.getElementById("rooms_calendar").addEventListener('click', markDay);
 
 
 function markDay(e){
+    e.stopPropagation(); // 상위로 이벤트 발생을 막음
     if(e.target.classList.contains('available')){
         const rooms_checkin  = document.getElementById("rooms_checkin");
         const rooms_checkout  = document.getElementById("rooms_checkout");
