@@ -6,7 +6,6 @@ const Rooms = require('../models/rooms')
 const rooms = new Rooms();
 
 function computePageButton(totalLength, curPage, pageLength, url, query){
-    
     const page = []; // 페이징 정보를 담은 배열
     const numOfButton = 5; // 페이지 버튼 개수
     const maxPageNum = Math.ceil(totalLength/pageLength); // 최대 페이지
@@ -17,11 +16,13 @@ function computePageButton(totalLength, curPage, pageLength, url, query){
     if( curPage < Math.ceil(numOfButton/2)){
         startIndex = 1;
     } else if(curPage > maxPageNum - Math.ceil(numOfButton/2)){
-        startIndex = maxPageNum - numOfButton + 1;
+        startIndex = maxPageNum - Math.ceil(numOfButton/2) - 1;
+        startIndex = startIndex > 0 ? startIndex : 1;
     } else{
         startIndex = curPage-2;
     }
-    const endIndex = (startIndex+numOfButton) > maxPageNum ? maxPageNum : (startIndex+numOfButton);
+    console.log(startIndex);
+    const endIndex = (startIndex+numOfButton-1) > maxPageNum ? maxPageNum : (startIndex+numOfButton-1);
 
     if(curPage > 1) page.push({name:'<', href:rurl+(curPage-1)});
     for(let i=startIndex-1; i<endIndex; i++){
